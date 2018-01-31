@@ -1427,9 +1427,12 @@
     },
     {
         "name": "Linked Legacy",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 1,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Lock Gaze",
@@ -10446,8 +10449,11 @@
     },
     {
         "name": "Shadow Jaunt",
-        "level": -1,
-        "components": [],
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -10523,9 +10529,11 @@
     },
     {
         "name": "Shout",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Simulacrum, Lesser",
@@ -10578,8 +10586,12 @@
     },
     {
         "name": "Stone Shape",
-        "level": -1,
-        "components": [],
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -16510,9 +16522,14 @@
     },
     {
         "name": "Ascension",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 9,
+        "components": [
+            "V",
+            "S",
+            "F",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Astral Projection",
