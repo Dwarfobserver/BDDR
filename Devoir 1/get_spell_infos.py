@@ -89,6 +89,8 @@ def get_spell_info(name):
         html = response.read().decode('utf-8', 'ignore')
         parser = SpellParser(name)
         parser.feed(html)
+        if parser.info_set != 3:
+            raise Exception('spell infos not found in the web page')
         return {
             'name':             name,
             'level':            parser.level,
@@ -122,9 +124,14 @@ for name in names:
         spells.append(get_spell_info(name))
         parsed_spells += 1
     except Exception as e:
-        print('ignored error :')
+        print('ignored error (second tentative ...) :')
         print(str(e))
-        pass
+        try:
+            spells.append(get_spell_info(name))
+            parsed_spells += 1
+        except Exception as e:
+            print('spell fetch failed :')
+            print(str(e))
 
 with open(output_path, 'w') as output_file:
     result = json.dumps(spells, indent = 4)
