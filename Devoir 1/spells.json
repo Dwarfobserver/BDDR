@@ -28,14 +28,22 @@
     },
     {
         "name": "Breeze",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 0,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Chameleon Scales",
-        "level": -1,
-        "components": [],
+        "level": 0,
+        "components": [
+            "V",
+            "S",
+            "D"
+        ],
         "spell_resistance": false
     },
     {
@@ -59,9 +67,12 @@
     },
     {
         "name": "Detect Fiendish Presence",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 0,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Detect Magic",
@@ -92,9 +103,12 @@
     },
     {
         "name": "Drench",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 0,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Flare",
@@ -132,9 +146,12 @@
     },
     {
         "name": "Jolt",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 0,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Light",
@@ -175,8 +192,10 @@
     },
     {
         "name": "Oath of Anonymity",
-        "level": -1,
-        "components": [],
+        "level": 0,
+        "components": [
+            "V"
+        ],
         "spell_resistance": false
     },
     {
@@ -191,9 +210,13 @@
     },
     {
         "name": "Penumbra",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 0,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Prestidigitation",
@@ -235,15 +258,22 @@
     },
     {
         "name": "Root",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 0,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Scoop",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 0,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Scrivener's Chant",
@@ -257,9 +287,11 @@
     },
     {
         "name": "Sotto Voce",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 0,
+        "components": [
+            "V"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Spark",
@@ -447,9 +479,13 @@
     },
     {
         "name": "Blend with Surroundings",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 1,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Blood Money",
@@ -574,8 +610,10 @@
     },
     {
         "name": "Chastise",
-        "level": -1,
-        "components": [],
+        "level": 1,
+        "components": [
+            "V"
+        ],
         "spell_resistance": false
     },
     {
@@ -599,9 +637,12 @@
     },
     {
         "name": "Cloak of Secrets",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 1,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Coin Shot",
@@ -642,9 +683,12 @@
     },
     {
         "name": "Coward's Cowl",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 1,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Crafter's Curse",
@@ -871,9 +915,13 @@
     },
     {
         "name": "Ears of the City",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 1,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Emblazon Crest",
@@ -915,8 +963,11 @@
     },
     {
         "name": "Enlarge Tail",
-        "level": -1,
-        "components": [],
+        "level": 1,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -1032,8 +1083,12 @@
     },
     {
         "name": "Fool's Gold",
-        "level": -1,
-        "components": [],
+        "level": 1,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -1074,8 +1129,12 @@
     },
     {
         "name": "Grappling Scarf",
-        "level": -1,
-        "components": [],
+        "level": 1,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
@@ -1230,9 +1289,12 @@
     },
     {
         "name": "Incendiary Runes",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 1,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Incessant Buzzing",
@@ -1365,12 +1427,9 @@
     },
     {
         "name": "Linked Legacy",
-        "level": 1,
-        "components": [
-            "V",
-            "S"
-        ],
-        "spell_resistance": true
+        "level": -1,
+        "components": [],
+        "spell_resistance": false
     },
     {
         "name": "Lock Gaze",
@@ -1590,9 +1649,11 @@
     },
     {
         "name": "Night Blindness",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 1,
+        "components": [
+            "V"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Obscure Posion",
@@ -1624,8 +1685,11 @@
     },
     {
         "name": "Pattern Recognition",
-        "level": -1,
-        "components": [],
+        "level": 1,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -1658,9 +1722,13 @@
     },
     {
         "name": "Pesh Vigor",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 1,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Phantom Blood",
@@ -1893,8 +1961,12 @@
     },
     {
         "name": "Sculpted Cape",
-        "level": -1,
-        "components": [],
+        "level": 1,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
@@ -2038,8 +2110,11 @@
     },
     {
         "name": "Sow Thought",
-        "level": -1,
-        "components": [],
+        "level": 1,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -2062,8 +2137,12 @@
     },
     {
         "name": "Spirit Share",
-        "level": -1,
-        "components": [],
+        "level": 1,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
@@ -2097,8 +2176,11 @@
     },
     {
         "name": "Strong Wings",
-        "level": -1,
-        "components": [],
+        "level": 1,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -2351,9 +2433,12 @@
     },
     {
         "name": "Waterproof",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 1,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Wave Shield",
@@ -2375,9 +2460,12 @@
     },
     {
         "name": "Web Bolt",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 1,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Windy Escape",
@@ -2417,9 +2505,13 @@
     },
     {
         "name": "Aboleth's Lung",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Accelerate Poison",
@@ -2516,8 +2608,11 @@
     },
     {
         "name": "Amplify Stench",
-        "level": -1,
-        "components": [],
+        "level": 2,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -2559,9 +2654,11 @@
     },
     {
         "name": "Anti-Summoning Shield",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Apport Object",
@@ -2613,9 +2710,12 @@
     },
     {
         "name": "Assumed Likeness",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Aura of Distraction",
@@ -2675,14 +2775,21 @@
     },
     {
         "name": "Billowing Skirt",
-        "level": -1,
-        "components": [],
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
         "name": "Blade Tutor's Spirit",
-        "level": -1,
-        "components": [],
+        "level": 2,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -2704,9 +2811,12 @@
     },
     {
         "name": "Blood Blaze",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Blood in the Water",
@@ -2730,9 +2840,12 @@
     },
     {
         "name": "Bloody Tears and Jagged Smile",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Blur",
@@ -3082,8 +3195,12 @@
     },
     {
         "name": "Curse Terrain, Lesser",
-        "level": -1,
-        "components": [],
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -3501,9 +3618,12 @@
     },
     {
         "name": "Fleshy Facade",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Flickering Lights",
@@ -3592,9 +3712,12 @@
     },
     {
         "name": "Ghost Whip",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Ghostly Disguise",
@@ -3607,9 +3730,12 @@
     },
     {
         "name": "Ghoul Hunger",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Ghoul Touch",
@@ -3652,8 +3778,11 @@
     },
     {
         "name": "Grasping Vine",
-        "level": -1,
-        "components": [],
+        "level": 2,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -3914,9 +4043,13 @@
     },
     {
         "name": "Lead Plating",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Levitate",
@@ -3949,9 +4082,13 @@
     },
     {
         "name": "Limp Lash",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Lipstitch",
@@ -3992,8 +4129,12 @@
     },
     {
         "name": "Mage's Crawl Space",
-        "level": -1,
-        "components": [],
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -4008,9 +4149,13 @@
     },
     {
         "name": "Magic Siege Engine",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "D"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Make Whole",
@@ -4118,9 +4263,12 @@
     },
     {
         "name": "Mortal Terror",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Mount, Communal",
@@ -4474,9 +4622,13 @@
     },
     {
         "name": "Reveal True Shape",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Revealing Light",
@@ -4547,9 +4699,13 @@
     },
     {
         "name": "Scale Spikes",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Scare",
@@ -4629,8 +4785,11 @@
     },
     {
         "name": "Semblance of Flesh",
-        "level": -1,
-        "components": [],
+        "level": 2,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -4654,9 +4813,13 @@
     },
     {
         "name": "Sentry Skull",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Shackle",
@@ -4705,9 +4868,12 @@
     },
     {
         "name": "Shared Suffering",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "F"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Shatter",
@@ -4890,15 +5056,21 @@
     },
     {
         "name": "Steal Size",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Steal Voice",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Stone Call",
@@ -5050,9 +5222,13 @@
     },
     {
         "name": "Tears to Wine",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Telekinetic Assembly",
@@ -5142,9 +5318,13 @@
     },
     {
         "name": "Transmute Wine to Blood",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Twilight Haze",
@@ -5215,9 +5395,13 @@
     },
     {
         "name": "Veil of Ash",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Vine Strike",
@@ -5230,14 +5414,20 @@
     },
     {
         "name": "Visualization of the Body",
-        "level": -1,
-        "components": [],
+        "level": 2,
+        "components": [
+            "V",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
         "name": "Visualization of the Mind",
-        "level": -1,
-        "components": [],
+        "level": 2,
+        "components": [
+            "V",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -5366,15 +5556,22 @@
     },
     {
         "name": "Allied Cloak",
-        "level": -1,
-        "components": [],
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
         "name": "Ancestral Regression",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Anchored Step",
@@ -5456,8 +5653,11 @@
     },
     {
         "name": "Arcane Reinforcement",
-        "level": -1,
-        "components": [],
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -5509,9 +5709,13 @@
     },
     {
         "name": "Aura of Cannibalism",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Aura Sight",
@@ -5570,15 +5774,22 @@
     },
     {
         "name": "Black Sword of War",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Blacklight",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Blade Snare",
@@ -5610,9 +5821,12 @@
     },
     {
         "name": "Bleed Glory",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Blink",
@@ -5645,9 +5859,12 @@
     },
     {
         "name": "Blood Scent",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Blood Sentinel",
@@ -5698,9 +5915,13 @@
     },
     {
         "name": "Business Booms",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Calistria's Guardian Wasps",
@@ -5858,9 +6079,13 @@
     },
     {
         "name": "Control Vermin",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "D"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Countless Eyes",
@@ -5893,9 +6118,13 @@
     },
     {
         "name": "Dark-Light",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Darkvision, Communal",
@@ -5994,9 +6223,13 @@
     },
     {
         "name": "Diamond Spray",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Disable Construct",
@@ -6094,8 +6327,11 @@
     },
     {
         "name": "Draconic Malice",
-        "level": -1,
-        "components": [],
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -6137,9 +6373,12 @@
     },
     {
         "name": "Eldritch Fever",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Elemental Aura",
@@ -6234,8 +6473,11 @@
     },
     {
         "name": "Fins to Feet",
-        "level": -1,
-        "components": [],
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -6442,8 +6684,12 @@
     },
     {
         "name": "Harrowing",
-        "level": -1,
-        "components": [],
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
@@ -6526,9 +6772,13 @@
     },
     {
         "name": "Horrifying Visage",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Hostile Levitation",
@@ -6599,21 +6849,31 @@
     },
     {
         "name": "Imbue With Addiction",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Impede Speech",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Improve Trap",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Infernal Challenger",
@@ -6636,8 +6896,11 @@
     },
     {
         "name": "Insect Scouts",
-        "level": -1,
-        "components": [],
+        "level": 3,
+        "components": [
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -6682,9 +6945,12 @@
     },
     {
         "name": "Irradiate",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Irriseni Mirror Sight",
@@ -6717,9 +6983,13 @@
     },
     {
         "name": "Kalistocrat's Nightmare",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Keen Edge",
@@ -6750,9 +7020,13 @@
     },
     {
         "name": "Leshy Swarm",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Lightning Bolt",
@@ -6766,15 +7040,23 @@
     },
     {
         "name": "Lightning Conductor",
-        "level": -1,
-        "components": [],
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
         "name": "Lissalan Snake Sigil",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Loathsome Veil",
@@ -6877,9 +7159,13 @@
     },
     {
         "name": "Malediction (Hero Points)",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Marionette Possession",
@@ -6893,9 +7179,12 @@
     },
     {
         "name": "Matchmaker",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Mindlocked Messenger",
@@ -7077,9 +7366,12 @@
     },
     {
         "name": "Penumbral Disguise",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Perfect Placement",
@@ -7166,15 +7458,21 @@
     },
     {
         "name": "Prehensile Pilfer",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Prosperous Room",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Protection from Arrows, Communal",
@@ -7283,9 +7581,13 @@
     },
     {
         "name": "Recharge",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Reckless Infatuation",
@@ -7327,9 +7629,12 @@
     },
     {
         "name": "Restore Mythic Power",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Returning Weapon, Communal",
@@ -7390,9 +7695,13 @@
     },
     {
         "name": "Scale Spikes, Greater",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Scales of Deflection",
@@ -7434,9 +7743,13 @@
     },
     {
         "name": "Seed Spies",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Seek Thoughts",
@@ -7509,9 +7822,12 @@
     },
     {
         "name": "Share Glory",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Share Language, Communal",
@@ -7581,8 +7897,12 @@
     },
     {
         "name": "Silt Sphere",
-        "level": -1,
-        "components": [],
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -7616,8 +7936,12 @@
     },
     {
         "name": "Skyshroud",
-        "level": -1,
-        "components": [],
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
@@ -7661,8 +7985,12 @@
     },
     {
         "name": "Spherescry",
-        "level": -1,
-        "components": [],
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "A"
+        ],
         "spell_resistance": false
     },
     {
@@ -7714,9 +8042,13 @@
     },
     {
         "name": "Steal Years",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Stinking Cloud",
@@ -7796,8 +8128,12 @@
     },
     {
         "name": "Sundered Serpent Coil",
-        "level": -1,
-        "components": [],
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -7870,9 +8206,13 @@
     },
     {
         "name": "Thunderous Footfalls",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Thunderstomp, Greater",
@@ -7990,15 +8330,23 @@
     },
     {
         "name": "Unravel Destiny",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "D"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Unseen Engineers",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 3,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Urban Step",
@@ -8078,8 +8426,11 @@
     },
     {
         "name": "Wall of Mist",
-        "level": -1,
-        "components": [],
+        "level": 3,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -8151,9 +8502,12 @@
     },
     {
         "name": "Abyssal Vermin",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Acid Pit",
@@ -8225,9 +8579,12 @@
     },
     {
         "name": "Amnesia",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Animal Aspect, Greater",
@@ -8260,9 +8617,12 @@
     },
     {
         "name": "Apparent Treachery",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Aram Zey's Trap Ward",
@@ -8286,8 +8646,12 @@
     },
     {
         "name": "Assume Appearance, Greater",
-        "level": -1,
-        "components": [],
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
@@ -8321,9 +8685,13 @@
     },
     {
         "name": "Beanstalk",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Beast Shape II",
@@ -8385,9 +8753,12 @@
     },
     {
         "name": "Blast of Wind",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Bloatbomb",
@@ -8683,14 +9054,22 @@
     },
     {
         "name": "Curse of Magic Negation",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Curse Terrain",
-        "level": -1,
-        "components": [],
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -8754,9 +9133,12 @@
     },
     {
         "name": "Deathless",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Demanding Message",
@@ -8846,15 +9228,22 @@
     },
     {
         "name": "Earsend",
-        "level": -1,
-        "components": [],
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
         "name": "Earth Glide",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Elemental Body I",
@@ -8921,9 +9310,13 @@
     },
     {
         "name": "Enticing Adulation",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Eyes of the Void",
@@ -8976,9 +9369,12 @@
     },
     {
         "name": "Film of Filth",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Fire Shield",
@@ -9021,9 +9417,13 @@
     },
     {
         "name": "Flaming Aura",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Flaming Sphere, Greater",
@@ -9064,9 +9464,11 @@
     },
     {
         "name": "Fool's Teleport",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Forgetful Slumber",
@@ -9100,9 +9502,13 @@
     },
     {
         "name": "Frosty Aura",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Geas, Lesser",
@@ -9174,8 +9580,12 @@
     },
     {
         "name": "Harvest Knowledge",
-        "level": -1,
-        "components": [],
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -9207,14 +9617,21 @@
     },
     {
         "name": "Hunger for Flesh",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Hurricane Blast",
-        "level": -1,
-        "components": [],
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -9246,9 +9663,13 @@
     },
     {
         "name": "Ignoble Form",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Illusion of Treachery",
@@ -9270,9 +9691,12 @@
     },
     {
         "name": "Imbue with Flight",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Infernal Healing, Greater",
@@ -9286,8 +9710,12 @@
     },
     {
         "name": "Infuse Effigy",
-        "level": -1,
-        "components": [],
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
@@ -9408,9 +9836,13 @@
     },
     {
         "name": "Magic Siege Engine, Greater",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Majestic Image",
@@ -9603,9 +10035,12 @@
     },
     {
         "name": "Mythic Severance",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Naga Shape I",
@@ -9713,15 +10148,22 @@
     },
     {
         "name": "Probe History",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "D"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Project Weakness",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Protection from Energy, Communal",
@@ -9822,9 +10264,13 @@
     },
     {
         "name": "Renovation",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Resilient Reservoir",
@@ -9885,8 +10331,12 @@
     },
     {
         "name": "Rising Water",
-        "level": -1,
-        "components": [],
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -9900,8 +10350,12 @@
     },
     {
         "name": "Sacrifice",
-        "level": -1,
-        "components": [],
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -9983,17 +10437,17 @@
     },
     {
         "name": "Shadow Dragon Aspect",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
-    },
-    {
-        "name": "Shadow Jaunt",
         "level": 4,
         "components": [
             "V",
             "S"
         ],
+        "spell_resistance": true
+    },
+    {
+        "name": "Shadow Jaunt",
+        "level": -1,
+        "components": [],
         "spell_resistance": false
     },
     {
@@ -10069,11 +10523,9 @@
     },
     {
         "name": "Shout",
-        "level": 4,
-        "components": [
-            "V"
-        ],
-        "spell_resistance": true
+        "level": -1,
+        "components": [],
+        "spell_resistance": false
     },
     {
         "name": "Simulacrum, Lesser",
@@ -10126,12 +10578,8 @@
     },
     {
         "name": "Stone Shape",
-        "level": 4,
-        "components": [
-            "V",
-            "S",
-            "M"
-        ],
+        "level": -1,
+        "components": [],
         "spell_resistance": false
     },
     {
@@ -10166,8 +10614,12 @@
     },
     {
         "name": "Summon Genie, Lesser",
-        "level": -1,
-        "components": [],
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
@@ -10279,8 +10731,12 @@
     },
     {
         "name": "Thanatotic Fury",
-        "level": -1,
-        "components": [],
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -10352,9 +10808,12 @@
     },
     {
         "name": "Umbral Infusion",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Unbearable Brightness",
@@ -10426,8 +10885,11 @@
     },
     {
         "name": "Vomit Twin",
-        "level": -1,
-        "components": [],
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -10520,8 +10982,12 @@
     },
     {
         "name": "Water Shield",
-        "level": -1,
-        "components": [],
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -10535,9 +11001,12 @@
     },
     {
         "name": "Web Cloud",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Absorb Toxicity",
@@ -10599,9 +11068,12 @@
     },
     {
         "name": "Apparent Master",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Appearance of Life, Greater",
@@ -10615,8 +11087,12 @@
     },
     {
         "name": "Arid Refuge",
-        "level": -1,
-        "components": [],
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -10706,9 +11182,13 @@
     },
     {
         "name": "Blightburn Weapon",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "D"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Blood Boil",
@@ -10722,9 +11202,13 @@
     },
     {
         "name": "Blood Tentacles",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Break Enchantment",
@@ -10802,8 +11286,12 @@
     },
     {
         "name": "Charnel House",
-        "level": -1,
-        "components": [],
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -10895,9 +11383,13 @@
     },
     {
         "name": "Constricting Coils",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Contact Entity III",
@@ -10946,9 +11438,12 @@
     },
     {
         "name": "Create Mindscape",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Curse of Disgust",
@@ -11133,9 +11628,13 @@
     },
     {
         "name": "Energy Siege Shot",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Fabricate",
@@ -11266,9 +11765,13 @@
     },
     {
         "name": "Gift of the Deep",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "D"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Glimpse of Truth",
@@ -11341,9 +11844,13 @@
     },
     {
         "name": "Half-Blood Extraction",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Hammer of Mending",
@@ -11445,9 +11952,12 @@
     },
     {
         "name": "Lend Path",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Life Bubble",
@@ -11717,8 +12227,12 @@
     },
     {
         "name": "Permanency",
-        "level": -1,
-        "components": [],
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -12049,9 +12563,13 @@
     },
     {
         "name": "Slough",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Smug Narcissism",
@@ -12103,21 +12621,31 @@
     },
     {
         "name": "Spellsteal",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Steal Power",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Steal Years, Greater",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Stoneskin, Communal",
@@ -12141,9 +12669,13 @@
     },
     {
         "name": "Strip Scales",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Suffocation",
@@ -12167,8 +12699,12 @@
     },
     {
         "name": "Summon Genie",
-        "level": -1,
-        "components": [],
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
@@ -12183,9 +12719,13 @@
     },
     {
         "name": "Summon Lesser Demon",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Summon Lesser Psychopomp",
@@ -12365,8 +12905,12 @@
     },
     {
         "name": "Transplant Visage",
-        "level": -1,
-        "components": [],
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -12449,8 +12993,12 @@
     },
     {
         "name": "Vile Dog Transformation",
-        "level": -1,
-        "components": [],
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -12464,9 +13012,13 @@
     },
     {
         "name": "Waft",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Walk the Plank",
@@ -12509,9 +13061,13 @@
     },
     {
         "name": "Wall of Light",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Wall of Sound",
@@ -12563,9 +13119,12 @@
     },
     {
         "name": "Wracking Ray",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 5,
+        "components": [
+            "V",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Wreath of Blades",
@@ -12693,15 +13252,22 @@
     },
     {
         "name": "Borrowed Time",
-        "level": -1,
-        "components": [],
+        "level": 6,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
         "name": "Break, Greater",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Bull's Strength, Mass",
@@ -12765,9 +13331,13 @@
     },
     {
         "name": "Claim Identity, Greater",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Cloak of Dreams",
@@ -12880,8 +13450,12 @@
     },
     {
         "name": "Curse Terrain, Greater",
-        "level": -1,
-        "components": [],
+        "level": 8,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -12914,9 +13488,12 @@
     },
     {
         "name": "Delectable Flesh",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 6,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Destroy Robot",
@@ -12984,9 +13561,13 @@
     },
     {
         "name": "Dust Ward",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Eagle's Splendor, Mass",
@@ -13010,9 +13591,13 @@
     },
     {
         "name": "Elemental Assessor",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Elemental Body III",
@@ -13046,9 +13631,13 @@
     },
     {
         "name": "Energy Siege Shot, Greater",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Envious Urge",
@@ -13193,8 +13782,13 @@
     },
     {
         "name": "Genius Avaricious",
-        "level": -1,
-        "components": [],
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "M",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
@@ -13230,9 +13824,12 @@
     },
     {
         "name": "Hardening",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 6,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Harrowing, Greater",
@@ -13292,9 +13889,13 @@
     },
     {
         "name": "Impart Mind",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Janni's Jaunt",
@@ -13308,9 +13909,13 @@
     },
     {
         "name": "Jatembe's Ire",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Knock, Mass",
@@ -13639,9 +14244,13 @@
     },
     {
         "name": "Spectral Saluqi",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Spellcrash",
@@ -13683,8 +14292,12 @@
     },
     {
         "name": "Summon Genie, Greater",
-        "level": -1,
-        "components": [],
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
@@ -13767,15 +14380,22 @@
     },
     {
         "name": "Teleport Structure",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 6,
+        "components": [
+            "V",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Torrent of Elemental Rage",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Transfer Familiar",
@@ -13808,9 +14428,11 @@
     },
     {
         "name": "Treacherous Teleport",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 6,
+        "components": [
+            "V"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Triggered Hallucination",
@@ -13910,8 +14532,12 @@
     },
     {
         "name": "Wall of Iron",
-        "level": -1,
-        "components": [],
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -13925,9 +14551,11 @@
     },
     {
         "name": "What Grows Within",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 6,
+        "components": [
+            "V"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Whip of Ants",
@@ -13969,9 +14597,13 @@
     },
     {
         "name": "Arcane Cannon",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 7,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Arcane Sight, Greater",
@@ -14013,9 +14645,14 @@
     },
     {
         "name": "Awaken Construct",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 7,
+        "components": [
+            "V",
+            "S",
+            "M",
+            "D"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Banishment",
@@ -14106,15 +14743,22 @@
     },
     {
         "name": "Create Mindscape, Greater",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 7,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Create Variant Mummy",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 7,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Crime Wave",
@@ -14186,9 +14830,12 @@
     },
     {
         "name": "Elemental Bombardment",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 7,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Epidemic",
@@ -14210,9 +14857,13 @@
     },
     {
         "name": "Expel Blood",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 7,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Expend",
@@ -14373,8 +15024,12 @@
     },
     {
         "name": "Hunger for Flesh, Mass",
-        "level": -1,
-        "components": [],
+        "level": 7,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -14492,9 +15147,13 @@
     },
     {
         "name": "Legendary Proportions",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 7,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Limited Wish",
@@ -14566,9 +15225,12 @@
     },
     {
         "name": "Memory of Function",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 7,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Mydriatic Spontaneity, Mass",
@@ -14702,8 +15364,12 @@
     },
     {
         "name": "Plundered Power",
-        "level": -1,
-        "components": [],
+        "level": 7,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -14765,8 +15431,12 @@
     },
     {
         "name": "Recorporeal Incarnation",
-        "level": -1,
-        "components": [],
+        "level": 7,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
@@ -14978,9 +15648,13 @@
     },
     {
         "name": "Teleport Trap",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 7,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Teleport, Greater",
@@ -15012,9 +15686,13 @@
     },
     {
         "name": "Terraform",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 7,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Umbral Strike",
@@ -15174,14 +15852,22 @@
     },
     {
         "name": "Curse of Night",
-        "level": -1,
-        "components": [],
+        "level": 8,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
         "name": "Curse Terrain, Supreme",
-        "level": -1,
-        "components": [],
+        "level": 8,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -15252,8 +15938,12 @@
     },
     {
         "name": "Form of the Alien Dragon III",
-        "level": -1,
-        "components": [],
+        "level": 8,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -15365,9 +16055,13 @@
     },
     {
         "name": "Maw of Chaos",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 8,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Maze",
@@ -15464,9 +16158,12 @@
     },
     {
         "name": "Prediction of Failure",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 8,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Prismatic Wall",
@@ -15510,8 +16207,11 @@
     },
     {
         "name": "Rift of Ruin",
-        "level": -1,
-        "components": [],
+        "level": 8,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -15574,9 +16274,12 @@
     },
     {
         "name": "Soulreaver",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 8,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Spell Absorption, Greater",
@@ -15599,8 +16302,12 @@
     },
     {
         "name": "Spellscar",
-        "level": -1,
-        "components": [],
+        "level": 8,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -15735,8 +16442,11 @@
     },
     {
         "name": "Tomb Legion",
-        "level": -1,
-        "components": [],
+        "level": 8,
+        "components": [
+            "V",
+            "S"
+        ],
         "spell_resistance": false
     },
     {
@@ -15751,9 +16461,12 @@
     },
     {
         "name": "Umbral Infusion, Mass",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 8,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Undead Anatomy IV",
@@ -15821,9 +16534,14 @@
     },
     {
         "name": "Canopic Conversion",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 9,
+        "components": [
+            "V",
+            "S",
+            "F",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Clashing Rocks",
@@ -15856,8 +16574,12 @@
     },
     {
         "name": "Curse of Fell Seasons",
-        "level": -1,
-        "components": [],
+        "level": 9,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
         "spell_resistance": false
     },
     {
@@ -15882,9 +16604,13 @@
     },
     {
         "name": "Echean's Excellent Enclosure",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 9,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Energy Drain",
@@ -16035,9 +16761,13 @@
     },
     {
         "name": "Maze of Madness and Suffering",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 9,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Meteor Swarm",
@@ -16124,9 +16854,13 @@
     },
     {
         "name": "Rune of Jandelay",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 9,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Salvage",
@@ -16149,9 +16883,13 @@
     },
     {
         "name": "Scribe's Binding",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 9,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Shades",
@@ -16193,9 +16931,13 @@
     },
     {
         "name": "Spawn Calling",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 9,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Suffocation, Mass",
@@ -16219,9 +16961,13 @@
     },
     {
         "name": "Summon Greater Demon",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 9,
+        "components": [
+            "V",
+            "S",
+            "F"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Summon Monster 9",
@@ -16377,8 +17123,12 @@
     },
     {
         "name": "Yellow Sign",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 9,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     }
 ]

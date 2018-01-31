@@ -59,7 +59,7 @@ class SpellParser(html.parser.HTMLParser):
         if not self.found_section:
             if   self.next_data == 'name':
                 self.next_data = ''
-                if data[1:] == self.name:
+                if data == self.name or data[1:] == self.name:
                     self.found_section = True
         elif     self.next_data == 'title':
             self.next_data = data
