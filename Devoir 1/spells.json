@@ -617,9 +617,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "y",
-            "a"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -1010,9 +1008,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "m",
-            "o"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -1622,9 +1618,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "d",
-            "o"
+            "F"
         ],
         "spell_resistance": false
     },
@@ -2009,8 +2003,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -2020,9 +2013,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "r",
-            "o"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -2659,9 +2650,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "o",
-            "f"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -2836,8 +2825,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "e"
+            "F"
         ],
         "spell_resistance": false
     },
@@ -2847,9 +2835,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "o",
-            "f"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -3077,9 +3063,13 @@
     },
     {
         "name": "Create Treasure Map",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Crimson Confession",
@@ -3343,10 +3333,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "w",
-            "a",
-            "o"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -3489,9 +3476,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "b",
-            "a"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -3862,9 +3847,13 @@
     },
     {
         "name": "Invisibility",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Invisibility Bubble",
@@ -4656,9 +4645,12 @@
     },
     {
         "name": "Sensory Overload",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Sentry Skull",
@@ -4954,8 +4946,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "e"
+            "F"
         ],
         "spell_resistance": true
     },
@@ -5023,8 +5014,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -5054,8 +5044,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "s"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -5071,8 +5060,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "c"
+            "F"
         ],
         "spell_resistance": false
     },
@@ -5607,9 +5595,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "e",
-            "o"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -5669,11 +5655,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "c",
-            "s",
-            "o",
-            "p"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -5958,9 +5940,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "r",
-            "o"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -6427,8 +6407,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "n"
+            "F"
         ],
         "spell_resistance": true
     },
@@ -6483,8 +6462,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "d"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -6494,8 +6472,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "o"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -6524,8 +6501,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "s"
+            "F"
         ],
         "spell_resistance": true
     },
@@ -6535,8 +6511,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "s"
+            "F"
         ],
         "spell_resistance": true
     },
@@ -7096,9 +7071,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "s",
-            "o"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -7402,9 +7375,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "d",
-            "o"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -8768,8 +8739,7 @@
             "V",
             "S",
             "M",
-            "F",
-            "0"
+            "F"
         ],
         "spell_resistance": false
     },
@@ -9061,9 +9031,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "b",
-            "a"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -9200,9 +9168,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "a",
-            "a"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -9416,9 +9382,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "p",
-            "o"
+            "F"
         ],
         "spell_resistance": true
     },
@@ -9604,7 +9568,6 @@
             "V",
             "S",
             "M",
-            "a",
             "F"
         ],
         "spell_resistance": false
@@ -9976,8 +9939,7 @@
             "V",
             "S",
             "M",
-            "F",
-            "0"
+            "F"
         ],
         "spell_resistance": true
     },
@@ -9987,10 +9949,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "s",
-            "a",
-            "a"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -10079,9 +10038,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "s",
-            "o"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -10259,9 +10216,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -10271,9 +10226,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -10283,9 +10236,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -10455,8 +10406,12 @@
     },
     {
         "name": "Vitriolic Mist",
-        "level": -1,
-        "components": [],
+        "level": 4,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
@@ -10679,8 +10634,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -11189,8 +11143,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "w"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -11229,9 +11182,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "c",
-            "o"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -11299,10 +11250,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "e",
-            "w",
-            "d"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -11387,8 +11335,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "n"
+            "F"
         ],
         "spell_resistance": true
     },
@@ -11415,8 +11362,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "w"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -11463,8 +11409,7 @@
         "level": 5,
         "components": [
             "S",
-            "M",
-            "s"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -11549,9 +11494,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "a",
-            "a"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -11561,10 +11504,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "a",
-            "a",
-            "a"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -12303,9 +12243,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -12315,9 +12253,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -12327,9 +12263,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -12415,9 +12349,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "l",
-            "a"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -12641,8 +12573,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "e"
+            "F"
         ],
         "spell_resistance": true
     },
@@ -12690,8 +12621,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "0"
+            "F"
         ],
         "spell_resistance": false
     },
@@ -12738,9 +12668,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "o",
-            "f"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -12781,9 +12709,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "o",
-            "f"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -12803,10 +12729,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "a",
-            "g",
-            "o"
+            "F"
         ],
         "spell_resistance": true
     },
@@ -12882,8 +12805,7 @@
             "V",
             "S",
             "M",
-            "F",
-            "0"
+            "F"
         ],
         "spell_resistance": false
     },
@@ -12912,8 +12834,7 @@
             "V",
             "S",
             "M",
-            "F",
-            "0"
+            "F"
         ],
         "spell_resistance": false
     },
@@ -13168,9 +13089,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "w",
-            "a"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -13305,9 +13224,6 @@
             "V",
             "S",
             "M",
-            "a",
-            "a",
-            "a",
             "F"
         ],
         "spell_resistance": true
@@ -13495,10 +13411,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "l",
-            "s",
-            "a"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -13644,8 +13557,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -13701,8 +13613,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "0"
+            "F"
         ],
         "spell_resistance": true
     },
@@ -13802,9 +13713,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -13814,9 +13723,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -13826,9 +13733,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -13838,9 +13743,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -13889,8 +13792,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "w"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -14008,12 +13910,8 @@
     },
     {
         "name": "Wall of Iron",
-        "level": 6,
-        "components": [
-            "V",
-            "S",
-            "M"
-        ],
+        "level": -1,
+        "components": [],
         "spell_resistance": false
     },
     {
@@ -14450,8 +14348,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "s"
+            "F"
         ],
         "spell_resistance": true
     },
@@ -14542,8 +14439,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -14606,8 +14502,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -14617,8 +14512,7 @@
         "components": [
             "V",
             "S",
-            "D",
-            "o"
+            "D"
         ],
         "spell_resistance": true
     },
@@ -14647,10 +14541,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "a",
-            "a",
-            "e"
+            "F"
         ],
         "spell_resistance": false
     },
@@ -14986,8 +14877,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -15016,9 +14906,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "s",
-            "a"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -15066,9 +14954,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -15078,9 +14964,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -15100,9 +14984,11 @@
     },
     {
         "name": "Teleport, Greater",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 7,
+        "components": [
+            "V"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Temporal Divergence",
@@ -15223,8 +15109,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -15234,9 +15119,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -15265,7 +15148,6 @@
             "V",
             "S",
             "M",
-            "0",
             "F"
         ],
         "spell_resistance": false
@@ -15337,8 +15219,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -15450,8 +15331,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -15461,9 +15341,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "a",
-            "o"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -15563,9 +15441,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "g",
-            "a"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -15608,9 +15484,7 @@
             "V",
             "S",
             "M",
-            "F",
-            "0",
-            "t"
+            "F"
         ],
         "spell_resistance": true
     },
@@ -15785,9 +15659,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -15797,8 +15669,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -15808,8 +15679,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -15819,9 +15689,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -15831,8 +15699,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -15852,8 +15719,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "0"
+            "F"
         ],
         "spell_resistance": false
     },
@@ -15863,11 +15729,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "e",
-            "r",
-            "a",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -15883,8 +15745,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -15930,8 +15791,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "0"
+            "F"
         ],
         "spell_resistance": true
     },
@@ -15947,8 +15807,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -16008,7 +15867,6 @@
             "V",
             "S",
             "M",
-            "0",
             "D"
         ],
         "spell_resistance": true
@@ -16098,8 +15956,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "w"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -16118,8 +15975,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "5"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -16243,8 +16099,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": false
     },
@@ -16322,8 +16177,7 @@
         "components": [
             "V",
             "S",
-            "F",
-            "0"
+            "F"
         ],
         "spell_resistance": false
     },
@@ -16395,9 +16249,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -16407,9 +16259,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "p",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -16418,8 +16268,7 @@
         "level": 9,
         "components": [
             "V",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -16447,8 +16296,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "s"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -16475,8 +16323,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },
@@ -16505,8 +16352,7 @@
         "components": [
             "V",
             "S",
-            "M",
-            "0"
+            "M"
         ],
         "spell_resistance": true
     },

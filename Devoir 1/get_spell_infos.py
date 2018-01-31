@@ -58,6 +58,7 @@ class SpellParser(html.parser.HTMLParser):
 
         if not self.found_section:
             if   self.next_data == 'name':
+                self.next_data = ''
                 if data[1:] == self.name:
                     self.found_section = True
         elif     self.next_data == 'title':
@@ -71,7 +72,9 @@ class SpellParser(html.parser.HTMLParser):
             elif self.next_data == 'Components':
                 split = data.split(',')
                 for letters in split:
-                    self.components.append(letters[1])
+                    letter = letters[1]
+                    if letter.isalpha() and letter.isupper():
+                        self.components.append(letter)
                 self.info_set += 1
 
             elif self.next_data == 'Spell Resistance':
@@ -118,7 +121,9 @@ for name in names:
     try:
         spells.append(get_spell_info(name))
         parsed_spells += 1
-    except:
+    except Exception as e:
+        print('ignored error :')
+        print(str(e))
         pass
 
 with open(output_path, 'w') as output_file:
