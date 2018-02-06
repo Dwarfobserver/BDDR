@@ -2040,9 +2040,12 @@
     },
     {
         "name": "Shield Speech",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 1,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Shock Shield",
@@ -2548,9 +2551,12 @@
     },
     {
         "name": "Admonishing Ray",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 2,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Adoration",
@@ -10514,9 +10520,12 @@
     },
     {
         "name": "Shield Speech, Greater",
-        "level": -1,
-        "components": [],
-        "spell_resistance": false
+        "level": 4,
+        "components": [
+            "V",
+            "S"
+        ],
+        "spell_resistance": true
     },
     {
         "name": "Shocking Image",
@@ -13680,8 +13689,12 @@
     },
     {
         "name": "Flesh to Ooze",
-        "level": -1,
-        "components": [],
+        "level": 6,
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
         "spell_resistance": false
     },
     {
