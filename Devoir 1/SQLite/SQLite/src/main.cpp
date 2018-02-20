@@ -102,7 +102,7 @@ int main() {
 
 		// Get the usable spell's names
 		std::vector<std::string> spellNames;
-		sqlite3_exec(db, "SELECT name FROM spells WHERE level <= 4",
+		sqlite3_exec(db, "SELECT name FROM spells WHERE level <= 4 AND components = 'V'",
 			[](void* pResult, int argc, char **argv, char **azColName) -> int {
 
 				auto& spells = *static_cast<std::vector<std::string>*>(pResult);
