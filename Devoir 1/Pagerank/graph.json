@@ -1,0 +1,22 @@
+[
+    {
+        "URL" : "A",
+        "PageRank" : 1,
+        "OutlinkList" : ["B", "C"]
+    },
+    {
+        "URL" : "B",
+        "PageRank" : 1,
+        "OutlinkList" : ["C"]
+    },
+    {
+        "URL" : "C",
+        "PageRank" : 1,
+        "OutlinkList" : ["A"]
+    },
+    {
+        "URL" : "D",
+        "PageRank" : 1,
+        "OutlinkList" : ["C"]
+    }
+]
