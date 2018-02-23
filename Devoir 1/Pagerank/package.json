@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "dummy-json": "^2.0.0",
     "mongojs": "^2.5.0"
   }
 }

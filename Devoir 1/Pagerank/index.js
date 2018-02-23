@@ -1,8 +1,9 @@
+"use strict";
+
 let mongojs = require('mongojs');
 let fs = require('fs');
-let dummyjson = require('dummy-json');
 
-let db = mongojs('localhost/TP1Database', ['WebsitePagerank', 'MapReduceResult']);
+let db = mongojs('localhost/TP1Database', ['WebsitePagerank']);
 const dampingFactor = 0.85;
 let result = fs.readFileSync("WebsitePagerank.json", "UTF-8");
 
@@ -59,10 +60,13 @@ let mapreducer = function(){
                 console.log(i);
                 mapreducer();
             }
+            else{
+                db.close();
+            }
         }
     );
 }
 
-let i=0
+let i=0;
 mapreducer();
 
