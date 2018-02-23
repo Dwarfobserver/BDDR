@@ -1,0 +1,30 @@
+[
+    {
+        "_id": "A",
+        "value": {
+            "outlink_list": ["B", "C"],
+            "pagerank":1
+        }
+    },
+    {
+        "_id": "B",
+        "value": {
+            "outlink_list": ["C"],
+            "pagerank":1
+        }
+    },
+    {
+        "_id": "C",
+        "value": {
+            "outlink_list": ["A"],
+            "pagerank":1
+        }
+    },
+    {
+        "_id": "D",
+        "value": {
+            "outlink_list": ["C"],
+            "pagerank":1
+        }
+    }
+]
