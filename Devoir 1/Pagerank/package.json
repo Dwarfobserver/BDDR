@@ -1,21 +1,15 @@
 {
   "name": "pagerank",
   "version": "1.0.0",
-  "description": "exercice for database course",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "console.log(\"Hello Node !\")"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Dwarfobserver/BDDR.git"
-  },
-  "author": "sidney & nicolas",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Dwarfobserver/BDDR/issues"
-  },
-  "homepage": "https://github.com/Dwarfobserver/BDDR#readme",
-  "dependencies": {
-    "mongodb": "^3.0.2"
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dummy-json": "^2.0.0",
+    "mongojs": "^2.5.0"
   }
 }
