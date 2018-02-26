@@ -1,0 +1,16 @@
+{
+  "name": "pagerank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "console.log(\"Hello JS !\")"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.0",
+    "cheerio": "^1.0.0-rc.2",
+    "xhttp": "^0.8.0"
+  }
+}
