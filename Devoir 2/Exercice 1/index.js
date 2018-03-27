@@ -214,6 +214,9 @@ function queryMonsters(monsterLink) {
                     queryMonsters(monsterURL)
                     .then((newMonsters) => {
                         for (const monster of newMonsters) {
+                            monster.spells = monster.spells.filter((value, index, self) =>
+                                self.indexOf(value) === index
+                            );
                             monsters.push(monster);
                         }
                         unlock();

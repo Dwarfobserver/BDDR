@@ -9,7 +9,6 @@ import scala.io.Source
 import scala.concurrent.duration._
 import scala.util.parsing.json.JSON
 
-
 object Main extends App {
 
     implicit val executor: ExecutionContextExecutor = ExecutionContext.global

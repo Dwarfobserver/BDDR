@@ -1,7 +1,4 @@
-
+.vs/
+.idea/
 .vscode/
 node_modules/
-Devoir\ 1/SQLite/CMakeFiles/
-Devoir\ 1/SQLite/SQLite/bin/
-Devoir\ 1/SQLite/SQLite/build/
-Devoir\ 1/SQLite/SQLite/.vs/

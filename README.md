@@ -26,4 +26,17 @@ Pour effectuer la même chose sur SQLite, exécutez le projet sur Visual Studio.
 ### Exercice 2 :
  
 Pour effectuer le pagerank sur les données de pages fournies, placez-vous dans le dossier Exercice2 puis exécutez la commande "npm install" pour installer les dépendances suivi de "node index.js".
- 
+
+## TP2 - Apache Spark
+
+### Prérequis :
+
+ - Hadoop 2.7.0+ installé dans C:/hadoop
+ - Apache Spark 2.3.0+
+ - JDK 1.8.0+
+ - Scala 2.11.12
+ - Node.js
+
+### Exercice 1 :
+
+Récupérer monstres (node) -> Générer les sorts (scala)
