@@ -51,7 +51,7 @@ object Main extends App {
     val (sc, monsters) = Await.result(for {
         _1 <- fSparkContext
         _2 <- fMonsters
-    } yield (_1, _2), 5.second)
+    } yield (_1, _2), 120.second)
 
     println("Manipulate data in RDDs ...")
 
