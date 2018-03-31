@@ -1,5 +1,8 @@
-import scala.collection.mutable
+package common
+
 import java.util.concurrent.locks.ReentrantLock
+
+import scala.collection.mutable
 
 // Allow to produce and consume values in a thread-safe way
 class Channel[T]() {

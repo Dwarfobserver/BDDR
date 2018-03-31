@@ -1,3 +1,6 @@
+package common
+
+import engine.ActorModel
 
 // Describes an actor in a scene configuration
 class ActorSetup(val actorType: ActorType.Value, val pos: (Float, Float)) {

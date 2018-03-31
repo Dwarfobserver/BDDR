@@ -1,7 +1,11 @@
+package engine
+
 import java.util.concurrent.atomic.AtomicBoolean
 
-import scala.concurrent.{Await, ExecutionContext, Future}
+import common.{ActorStatus, Channel, SceneSetup, SceneStatus}
+
 import scala.concurrent.duration._
+import scala.concurrent.{Await, ExecutionContext, Future}
 
 // The class which runs the fight
 class Engine(val channel: Channel[SceneStatus], val setup: SceneSetup) {

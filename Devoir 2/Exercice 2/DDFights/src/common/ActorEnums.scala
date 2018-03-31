@@ -1,3 +1,5 @@
+package common
+
 
 object ActorType extends Enumeration {
     val Solar:        ActorType.Value = Value("Solar")

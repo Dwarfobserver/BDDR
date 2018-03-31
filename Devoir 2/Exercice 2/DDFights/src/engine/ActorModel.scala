@@ -1,3 +1,7 @@
+package engine
+
+
+import common.{ActorSide, ActorType}
 
 import scala.collection.immutable
 
