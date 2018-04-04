@@ -19,7 +19,7 @@ class Engine(val channel: Channel[SceneStatus], val setup: SceneSetup) {
     private var status: SceneStatus = _
 
     private [engine] var sc: SparkContext = _
-    private [engine] var graph: Graph[Actor, Nothing] = _
+    private [engine] var graph: Graph[Actor, Unit] = _
 
     // Start the engine asynchronously
     def start(): Unit = {
@@ -65,16 +65,15 @@ object Engine {
         new SparkContext(conf)
     }
 
-    private def createGraph(sc: SparkContext, setup: SceneSetup): Graph[Actor, Nothing] = {
+    private def createGraph(sc: SparkContext, setup: SceneSetup): Graph[Actor, Unit] = {
         val ids = Iterator.from(1)
         val actors = for {
             info <- setup.actors
             model = ActorModel.of(info.actorType)
-            actor = new Actor(model, ids.next())
-            actor.pos = info.pos
+            actor = new Actor(model, ids.next(), info.pos)
         } yield (actor.id, actor)
 
-        val links = List(Edge(1L, 2L))
+        val links = List(Edge(1L, 2L, ()))
 
         val vertices = sc.parallelize(actors)
         val edges    = sc.parallelize(links)
