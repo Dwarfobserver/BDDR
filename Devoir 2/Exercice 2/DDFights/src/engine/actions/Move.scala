@@ -9,3 +9,9 @@ class Move(speed: Float) extends Action(ActionId.Move) {
 
     override def update(): Unit = ()
 }
+object Move {
+    Action.factories += (kv = (ActionId.Move, (jSpell) => {
+        val speed = jSpell("speed").asInstanceOf[Double].toFloat
+        new Move(speed)
+    }))
+}

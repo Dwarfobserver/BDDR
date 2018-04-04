@@ -1,11 +1,15 @@
 package engine
 
-import java.util.concurrent.atomic.AtomicBoolean
+import org.apache.spark._
+import org.apache.spark.graphx._
+import org.apache.log4j.{Level, Logger}
 
-import common.{ActorStatus, Channel, SceneSetup, SceneStatus}
+import java.util.concurrent.atomic.AtomicBoolean
 
 import scala.concurrent.duration._
 import scala.concurrent.{Await, ExecutionContext, Future}
+
+import common.{ActorStatus, Channel, SceneSetup, SceneStatus}
 
 // The class which runs the fight
 class Engine(val channel: Channel[SceneStatus], val setup: SceneSetup) {
@@ -13,6 +17,9 @@ class Engine(val channel: Channel[SceneStatus], val setup: SceneSetup) {
     private val mustStop = new AtomicBoolean(false)
     private var task: Future[Unit] = _
     private var status: SceneStatus = _
+
+    private [engine] var sc: SparkContext = _
+    private [engine] var graph: Graph[Actor, Nothing] = _
 
     // Start the engine asynchronously
     def start(): Unit = {
@@ -30,10 +37,13 @@ class Engine(val channel: Channel[SceneStatus], val setup: SceneSetup) {
     // Ask the engine to stop, then wait him to finish
     def stop(): Unit = {
         mustStop.set(true)
-        Await.result(task, 5.second)
+        Await.result(task, 10.second)
     }
 
     private def run(): Unit = {
+        sc    = Engine.createContext()
+        graph = Engine.createGraph(sc, setup)
+
         var time = System.currentTimeMillis()
         while (!mustStop.get()) {
             val t2 = System.currentTimeMillis()
@@ -43,6 +53,32 @@ class Engine(val channel: Channel[SceneStatus], val setup: SceneSetup) {
             }
             Thread.sleep(10)
         }
+    }
+
+}
+object Engine {
+
+    private def createContext(): SparkContext = {
+        System.setProperty("hadoop.home.dir", "C:/hadoop")
+        val conf = new SparkConf().setAppName("DDFights").setMaster("local[*]")
+        Logger.getRootLogger.setLevel(Level.WARN)
+        new SparkContext(conf)
+    }
+
+    private def createGraph(sc: SparkContext, setup: SceneSetup): Graph[Actor, Nothing] = {
+        val ids = Iterator.from(1)
+        val actors = for {
+            info <- setup.actors
+            model = ActorModel.of(info.actorType)
+            actor = new Actor(model, ids.next())
+            actor.pos = info.pos
+        } yield (actor.id, actor)
+
+        val links = List(Edge(1L, 2L))
+
+        val vertices = sc.parallelize(actors)
+        val edges    = sc.parallelize(links)
+        Graph(vertices, edges)
     }
 
 }

@@ -1,0 +1,32 @@
+{
+  "Solar": {
+    "side": "Angels",
+    "life": 100,
+    "size": 5,
+    "energy": 15,
+    "regeneration": 20,
+    "spells": {
+      "Move": {
+        "speed": 20
+      },
+      "Attack": {
+        "damages": 20
+      }
+    }
+  },
+  "Orc Barbarian": {
+    "side": "Orcs",
+    "life": 10,
+    "size": 1,
+    "energy": 3,
+    "regeneration": 0,
+    "spells": {
+      "Move": {
+        "speed": 5
+      },
+      "Attack": {
+        "damages": 4
+      }
+    }
+  }
+}

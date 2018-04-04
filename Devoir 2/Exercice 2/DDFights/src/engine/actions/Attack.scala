@@ -9,3 +9,10 @@ class Attack(val damages: Float) extends Action(ActionId.Attack) {
 
     override def update(): Unit = ()
 }
+object Attack {
+    Action.factories += (kv = (ActionId.Attack, (jSpell) => {
+        val damages = jSpell("damages").asInstanceOf[Double].toFloat
+        new Attack(damages)
+    }))
+}
+
