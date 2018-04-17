@@ -14,13 +14,14 @@ class ActorModel(val actorType: ActorType.Value) {
     var life: Float = _
     var size: Float = _
     var energy: Float = _
+    var initiative: Float = _
     var regeneration: Float = _
     var makeActions: () => List[Action] = _
 }
 object ActorModel {
 
     // Access the model of the given actor type
-    def of(actorType: ActorType.Value) = models(actorType)
+    def from(actorType: ActorType.Value) = models(actorType)
 
     private val models: immutable.HashMap[ActorType.Value, ActorModel] = {
 
@@ -57,6 +58,7 @@ object ActorModel {
             model.life         = jActor("life")        .asInstanceOf[Double].toFloat
             model.size         = jActor("size")        .asInstanceOf[Double].toFloat
             model.energy       = jActor("energy")      .asInstanceOf[Double].toFloat
+            model.initiative   = jActor("initiative")  .asInstanceOf[Double].toFloat
             model.regeneration = jActor("regeneration").asInstanceOf[Double].toFloat
 
             val factories: List[() => Action] = List()

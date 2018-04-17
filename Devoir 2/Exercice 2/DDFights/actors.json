@@ -4,6 +4,7 @@
     "life": 100,
     "size": 5,
     "energy": 15,
+    "initiative": 10,
     "regeneration": 20,
     "spells": {
       "Move": {
@@ -19,6 +20,7 @@
     "life": 10,
     "size": 1,
     "energy": 3,
+    "initiative": 1,
     "regeneration": 0,
     "spells": {
       "Move": {

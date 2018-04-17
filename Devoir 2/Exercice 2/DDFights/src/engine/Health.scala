@@ -29,4 +29,10 @@ class Health(val max: Float) {
             current = max
         }
     }
+    def kill(): Unit = {
+        if (dead) return
+        current = 0
+        dead = true
+        onDeath()
+    }
 }

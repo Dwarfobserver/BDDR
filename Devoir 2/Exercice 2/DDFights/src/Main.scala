@@ -1,7 +1,6 @@
 
 import common._
-import engine.Engine
-
+import engine.{Actor, Engine}
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.{SparkConf, SparkContext}
 
@@ -21,23 +20,20 @@ object Main extends App {
     // Sample code
 
     // Create a scene (maybe from a json or the GUI)
-    val scene = new SceneSetup(List(
+    val scene = List(
         new ActorSetup(ActorType.Solar, (10, 20)),
         new ActorSetup(ActorType.OrcBarbarian, (-10, 12)),
         new ActorSetup(ActorType.OrcBarbarian, (-11, 14))
-    ))
+    )
 
     // Create the channel where the scene status are passed
-    val channel = new Channel[SceneStatus]
+    val channel = new Channel[List[Actor]]
 
     // Create the engine
     val engine = new Engine(channel, scene)
 
     // Start the engine
     engine.start()
-
-    // Get the first status (garanteed to be available after the start)
-    var Some(status) = channel.pop()
 
     println("Engine started")
 
@@ -46,15 +42,22 @@ object Main extends App {
         scala.io.StdIn.readLine()
     } (ExecutionContext.global)
 
-    // Main loop, which keep polling for new status
-    while (!fInput.isCompleted) {
-        channel.pop() match {
+    def consume(opt: Option[List[Actor]]): Unit = {
+        opt match {
             case None => // Nothing
-            case Some(s) =>
-                status = s
-                println("Status updated")
+            case Some(actors) =>
+                println("actors alive : " + actors.size)
         }
+    }
+
+    // Main loop, which keep polling for new status
+    while (!fInput.isCompleted && !engine.isFinished) {
+        consume(channel.pop())
         Thread.sleep(10)
+    }
+    var opt = channel.pop()
+    while (opt.nonEmpty) {
+        consume(opt)
     }
 
     // Stop the engine
