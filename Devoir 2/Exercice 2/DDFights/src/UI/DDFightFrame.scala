@@ -2,7 +2,6 @@ package UI
 
 import java.awt.Color
 import java.io._
-import javax.swing.table.DefaultTableModel
 
 import scala.swing._
 import scala.swing.event._
@@ -35,11 +34,21 @@ class DDFightFrame extends MainFrame {
     //Fonction pour la logique interne du simulateur
     def getClickedActor(pos: (Double, Double)): Actor = {
         var res: Actor = null
-        for (actor <- currentSceneInstance) {
-            val dx = actor.pos._1 - pos._1
-            val dy = actor.pos._2 - pos._2
-            val distance = Math.sqrt(dx * dx + dy * dy)
-            if (distance < actor.model.size) res = actor
+        if(currentSceneInstance != null){
+            for (actor <- currentSceneInstance) {
+                val dx = actor.pos._1 - pos._1
+                val dy = actor.pos._2 - pos._2
+                val distance = Math.sqrt(dx * dx + dy * dy)
+                if (distance < actor.model.size) res = actor
+            }
+        }
+        else{
+            for (actor <- InitialScene) {
+                val dx = actor.pos._1 - pos._1
+                val dy = actor.pos._2 - pos._2
+                val distance = Math.sqrt(dx * dx + dy * dy)
+                if (distance < ActorModel.from(actor.actorType).size) res = new Actor(1,ActorModel.from(actor.actorType), actor.pos)
+            }
         }
         res
     }
@@ -121,8 +130,9 @@ class DDFightFrame extends MainFrame {
 
     def updateView(): Unit = {
         Field.repaint()
-        ActionListTable.repaint()
-        ActionLogTable.repaint()
+        actionListModel.setActor(selectedActor)
+        actionLogModel.setActor(selectedActor)
+        //TODO : set list element
     }
 
     def loadScene(file: File): Unit = {
@@ -144,11 +154,10 @@ class DDFightFrame extends MainFrame {
     }
 
     def startSimulation(): Unit = {
-        //TODO
         channel = new Channel[List[Actor]]
         engine = new Engine(channel, InitialScene)
         engine.start()
-        val update = Future{
+        Future{
             while(isRunning && (!engine.isFinished || channel.getQueueSize()>0)){
                 if(!isPaused){
                     loadNextScene()
@@ -194,24 +203,24 @@ class DDFightFrame extends MainFrame {
     private val StopButton = new Button("Stop")
     private val PlayPauseButton = new Button("Play/Pause")
     private val NextButton = new Button("Next")
-    private val ActionListModel = new DefaultTableModel
+    private val actionListModel = new ActionListModel
     private val ActionListTable  = new Table{
-        model = ActionListModel
+        model = actionListModel
         selection.elementMode = Table.ElementMode.Row
     }
-    private val ActionLogModel = new DefaultTableModel
+    private val actionLogModel = new ActionLogModel
     private val ActionLogTable = new Table{
-        model = ActionLogModel
+        model = actionLogModel
         selection.elementMode = Table.ElementMode.Row
     }
-    private val MonsterListModel = new MonsterListModel
+    private val monsterListModel = new MonsterListModel
     private val MonsterListTable = new Table {
-        model = MonsterListModel
+        model = monsterListModel
         selection.elementMode = Table.ElementMode.Row
     }
-    private val HealthLabel = new Label("Health")
-    private val NameLabel = new Label("Name")
-    private val PositionLabel = new Label("Position")
+    private val HealthLabel = new Label("")
+    private val NameLabel = new Label("")
+    private val PositionLabel = new Label("")
     private val Inspector = new BoxPanel(Orientation.Horizontal){
 
         //BasicInfo

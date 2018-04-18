@@ -4,11 +4,14 @@ import common.ActorType
 import javax.swing.event.TableModelListener
 import javax.swing.table.TableModel
 
+import scala.collection.mutable.ListBuffer
+
 class MonsterListModel extends TableModel{
 
+    private var _listeners: ListBuffer[TableModelListener] = ListBuffer()
 
     override def removeTableModelListener(l: TableModelListener): Unit = {
-
+        _listeners -= l
     }
 
     override def getRowCount: Int = {
@@ -16,11 +19,11 @@ class MonsterListModel extends TableModel{
     }
 
     override def addTableModelListener(l: TableModelListener): Unit = {
-
+        _listeners += l
     }
 
     override def getColumnName(columnIndex: Int): String = {
-        "MonsteList"
+        "Monste List"
     }
 
     override def getColumnClass(columnIndex: Int): Class[_] = {
@@ -35,7 +38,7 @@ class MonsterListModel extends TableModel{
         ActorType.values.toList(rowIndex)
     }
 
-    override def setValueAt(aValue: scala.Any, rowIndex: Int, columnIndex: Int): Unit = ???
+    override def setValueAt(aValue: scala.Any, rowIndex: Int, columnIndex: Int): Unit = {}
 
     override def isCellEditable(rowIndex: Int, columnIndex: Int): Boolean = false
 
