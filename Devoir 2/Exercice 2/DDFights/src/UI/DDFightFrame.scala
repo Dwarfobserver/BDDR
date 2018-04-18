@@ -2,22 +2,22 @@ package UI
 
 import java.awt.Color
 import java.io._
-
-import breeze.numerics.sqrt
+import javax.swing.table.DefaultTableModel
 
 import scala.swing._
 import scala.swing.event._
+
 import common._
-import engine.{Actor, ActorModel}
-import javax.swing.table.DefaultTableModel
+import engine.{Actor, ActorModel, Engine}
+
+import scala.concurrent.{ExecutionContext, Future}
 
 class DDFightFrame extends MainFrame {
 
     //Variable pour la logique interne du simulateur
-    private var InitialScene = List(
-        new ActorSetup(ActorType.Solar, (-10, 0)),
-        new ActorSetup(ActorType.OrcBarbarian, (10, 0)))
+    private var InitialScene = List[ActorSetup]()
     private var channel: Channel[List[Actor]] = _
+    private var engine: Engine = _
     private var currentSceneInstance : List[Actor] = List()
     private var currentTurn = 0
     private var isRunning = false
@@ -30,15 +30,15 @@ class DDFightFrame extends MainFrame {
     private var left: Double = -20
     private var bottom: Double = 20
     private var right: Double = 20
+    private var selectCadre: ((Double,Double),(Double,Double)) = _
 
     //Fonction pour la logique interne du simulateur
-
     def getClickedActor(pos: (Double, Double)): Actor = {
         var res: Actor = null
         for (actor <- currentSceneInstance) {
             val dx = actor.pos._1 - pos._1
             val dy = actor.pos._2 - pos._2
-            val distance = sqrt(dx * dx + dy * dy)
+            val distance = Math.sqrt(dx * dx + dy * dy)
             if (distance < actor.model.size) res = actor
         }
         res
@@ -49,7 +49,7 @@ class DDFightFrame extends MainFrame {
         for (actor <- InitialScene) {
             val dx = actor.pos._1 - pos._1
             val dy = actor.pos._2 - pos._2
-            val distance = sqrt(dx * dx + dy * dy)
+            val distance = Math.sqrt(dx * dx + dy * dy)
             if (distance < ActorModel.from(actor.actorType).size) res = actor
         }
         res
@@ -145,6 +145,21 @@ class DDFightFrame extends MainFrame {
 
     def startSimulation(): Unit = {
         //TODO
+        channel = new Channel[List[Actor]]
+        engine = new Engine(channel, InitialScene)
+        engine.start()
+        val update = Future{
+            while(isRunning && (!engine.isFinished || channel.getQueueSize()>0)){
+                if(!isPaused){
+                    println(channel.getQueueSize())
+                    loadNextScene()
+                    Thread.sleep(1000/SpeedSlider.value)
+                }
+            }
+            engine.stop()
+            channel = null
+            engine = null
+        }(ExecutionContext.global)
     }
 
     def loadNextScene(): Boolean = {
@@ -251,6 +266,41 @@ class DDFightFrame extends MainFrame {
                 if(model.side == ActorSide.Angels) g.setColor(Color.blue)
                 else g.setColor(Color.red)
                 drawActor(g, (actor.pos._1, actor.pos._2), model.size, actor.life.current / actor.life.max)
+            }
+
+            //draw preview
+            if(selectCadre != null){
+
+                val actor = ActorType.values.toList(MonsterListTable.selection.rows.leadIndex)
+                val actorSize = ActorModel.from(actor).size
+                val actorSide = ActorModel.from(actor).side
+                var point1 = ViewToField(
+                    Math.min(selectCadre._1._1, selectCadre._2._1),
+                    Math.min(selectCadre._1._2, selectCadre._2._2)
+                )
+                var point2 = ViewToField(
+                    Math.max(selectCadre._1._1, selectCadre._2._1),
+                    Math.max(selectCadre._1._2, selectCadre._2._2)
+                )
+                val actorMinMarge = 0.25 * actorSize
+                val actorMinDistance = 2 * (actorSize + actorMinMarge)
+
+                val xActorCount = ((point2._1 - point1._1)/actorMinDistance).toInt
+                val yActorCount = ((point2._2 - point1._2)/actorMinDistance).toInt
+
+                val xActorDistance =  (point2._1 - point1._1)/xActorCount
+                val yActorDistance =  (point2._2 - point1._2)/yActorCount
+
+                point1 = (point1._1 + xActorDistance/2, point1._2 + yActorDistance/2)
+                point2 = (point2._1 - xActorDistance/2, point2._2 - yActorDistance/2)
+
+                for(i <- 0 until xActorCount){
+                    for(j <- 0 until yActorCount){
+                        val pos = (point1._1 + i * xActorDistance, point1._2 + j * yActorDistance)
+                        if(actorSide == ActorSide.Angels) g.setColor(Color.blue) else g.setColor(Color.red)
+                        drawActor(g, pos, actorSize, 1)
+                    }
+                }
             }
         }
     }
@@ -391,6 +441,7 @@ class DDFightFrame extends MainFrame {
                 isPaused = false
                 currentSceneInstance = List()
                 selectedActor = null
+                TurnValue.text = "0"
                 updateView()
             }
 
@@ -416,10 +467,55 @@ class DDFightFrame extends MainFrame {
                 dragging = true
                 lastPos = e.point
             }
+            else if(e.peer.getButton == 3){
+                if(!isRunning && MonsterListTable.selection.rows.leadIndex >= 0){
+                    selectCadre = ((e.point.x,e.point.y),(e.point.x,e.point.y))
+                }
+            }
 
         case e: MouseReleased =>
             if(e.peer.getButton == 2){
                 dragging = false
+            }
+            else if(e.peer.getButton == 3){
+                if(!isRunning && selectCadre != null){
+
+                    val actor = ActorType.values.toList(MonsterListTable.selection.rows.leadIndex)
+                    val actorSize = ActorModel.from(actor).size
+                    var point1 = ViewToField(
+                            Math.min(selectCadre._1._1, selectCadre._2._1),
+                            Math.min(selectCadre._1._2, selectCadre._2._2)
+                    )
+                    var point2 = ViewToField(
+                            Math.max(selectCadre._1._1, selectCadre._2._1),
+                            Math.max(selectCadre._1._2, selectCadre._2._2)
+                    )
+                    val actorMinMarge = 0.25 * actorSize
+                    val actorMinDistance = 2 * (actorSize + actorMinMarge)
+
+                    val xActorCount = ((point2._1 - point1._1)/actorMinDistance).toInt
+                    val yActorCount = ((point2._2 - point1._2)/actorMinDistance).toInt
+
+                    val xActorDistance =  (point2._1 - point1._1)/xActorCount
+                    val yActorDistance =  (point2._2 - point1._2)/yActorCount
+
+                    var bufferScene = InitialScene.toBuffer
+
+                    point1 = (point1._1 + xActorDistance/2, point1._2 + yActorDistance/2)
+                    point2 = (point2._1 - xActorDistance/2, point2._2 - yActorDistance/2)
+
+                    for(i <- 0 until xActorCount){
+                        for(j <- 0 until yActorCount){
+                            val pos = (point1._1 + i * xActorDistance, point1._2 + j * yActorDistance)
+                            bufferScene = bufferScene += new ActorSetup(actor, (pos._1.toFloat, pos._2.toFloat))
+                        }
+                    }
+
+                    InitialScene = bufferScene.toList
+                    selectedActor = null
+                    selectCadre = null
+                    updateView()
+                }
             }
 
         case e: MouseDragged =>
@@ -443,6 +539,11 @@ class DDFightFrame extends MainFrame {
                 lastPos = e.point
 
                 Field.repaint
+            }
+
+            if(selectCadre != null){
+                selectCadre = (selectCadre._1,(e.point.x,e.point.y))
+                updateView()
             }
 
         case e: MouseClicked =>
