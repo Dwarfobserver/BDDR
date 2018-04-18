@@ -18,7 +18,7 @@ class DDFightFrame extends MainFrame {
     private var InitialScene = List[ActorSetup]()
     private var channel: Channel[List[Actor]] = _
     private var engine: Engine = _
-    private var currentSceneInstance : List[Actor] = List()
+    private var currentSceneInstance : List[Actor] = _
     private var currentTurn = 0
     private var isRunning = false
     private var isPaused = false
@@ -151,7 +151,6 @@ class DDFightFrame extends MainFrame {
         val update = Future{
             while(isRunning && (!engine.isFinished || channel.getQueueSize()>0)){
                 if(!isPaused){
-                    println(channel.getQueueSize())
                     loadNextScene()
                     Thread.sleep(1000/SpeedSlider.value)
                 }
@@ -253,7 +252,7 @@ class DDFightFrame extends MainFrame {
                 drawSelectedActor(g, (selectedActor.pos._1, selectedActor.pos._2), model.size)
             }
 
-            if(currentSceneInstance.isEmpty && InitialScene.nonEmpty){
+            if(currentSceneInstance == null && InitialScene.nonEmpty){
                 for(actor <- InitialScene){
                     val model = ActorModel.from(actor.actorType)
                     if(model.side == ActorSide.Angels) g.setColor(Color.blue)
@@ -261,13 +260,14 @@ class DDFightFrame extends MainFrame {
                     drawActor(g, (actor.pos._1, actor.pos._2), model.size, 1)
                 }
             }
-            for(actor <- currentSceneInstance){
-                val model = actor.model
-                if(model.side == ActorSide.Angels) g.setColor(Color.blue)
-                else g.setColor(Color.red)
-                drawActor(g, (actor.pos._1, actor.pos._2), model.size, actor.life.current / actor.life.max)
+            else if(currentSceneInstance != null){
+                for(actor <- currentSceneInstance){
+                    val model = actor.model
+                    if(model.side == ActorSide.Angels) g.setColor(Color.blue)
+                    else g.setColor(Color.red)
+                    drawActor(g, (actor.pos._1, actor.pos._2), model.size, actor.life.current / actor.life.max)
+                }
             }
-
             //draw preview
             if(selectCadre != null){
 
@@ -439,7 +439,7 @@ class DDFightFrame extends MainFrame {
             if(isRunning){
                 isRunning = false
                 isPaused = false
-                currentSceneInstance = List()
+                currentSceneInstance = null
                 selectedActor = null
                 TurnValue.text = "0"
                 updateView()
@@ -585,7 +585,7 @@ class DDFightFrame extends MainFrame {
                         val pos = ViewToField(e.point.x, e.point.y)
                         val actor = ActorType.values.toList(MonsterListTable.selection.rows.leadIndex)
                         InitialScene = (InitialScene.toBuffer += new ActorSetup(actor, (pos._1.toFloat, pos._2.toFloat))).toList
-                        currentSceneInstance = List()
+                        currentSceneInstance = null
                         selectedActor = null
                         updateView()
                     }
