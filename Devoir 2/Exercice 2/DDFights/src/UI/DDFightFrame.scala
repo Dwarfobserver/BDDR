@@ -3,6 +3,8 @@ package UI
 import java.awt.Color
 import java.io._
 
+import breeze.numerics.sqrt
+
 import scala.swing._
 import scala.swing.event._
 import common._
@@ -15,7 +17,7 @@ class DDFightFrame extends MainFrame {
     private var InitialScene = List(
         new ActorSetup(ActorType.Solar, (-10, 0)),
         new ActorSetup(ActorType.OrcBarbarian, (10, 0)))
-    private var channel = new Channel[List[Actor]]
+    private var channel: Channel[List[Actor]] = _
     private var currentSceneInstance : List[Actor] = List()
     private var currentTurn = 0
     private var isRunning = false
@@ -31,27 +33,47 @@ class DDFightFrame extends MainFrame {
 
     //Fonction pour la logique interne du simulateur
 
+    def getClickedActor(pos: (Double, Double)): Actor = {
+        var res: Actor = null
+        for (actor <- currentSceneInstance) {
+            val dx = actor.pos._1 - pos._1
+            val dy = actor.pos._2 - pos._2
+            val distance = sqrt(dx * dx + dy * dy)
+            if (distance < actor.model.size) res = actor
+        }
+        res
+    }
+
+    def getClickedActorSetup(pos: (Double, Double)): ActorSetup = {
+        var res: ActorSetup = null
+        for (actor <- InitialScene) {
+            val dx = actor.pos._1 - pos._1
+            val dy = actor.pos._2 - pos._2
+            val distance = sqrt(dx * dx + dy * dy)
+            if (distance < ActorModel.from(actor.actorType).size) res = actor
+        }
+        res
+    }
+
     def drawActor(g: Graphics2D, pos: (Double, Double), size: Double, lifeRate: Double): Unit ={
-        g.drawOval((pos._1 - size).toInt, (pos._2 - size).toInt, 2*size.toInt, 2*size.toInt)
+        var viewPos1 = FieldToView(pos._1 - size, pos._2 - size)
+        var viewPos2 = FieldToView(pos._1 + size, pos._2 + size)
+        var viewSize = (viewPos2._1 - viewPos1._1,viewPos2._2 - viewPos1._2)
+        g.drawOval(viewPos1._1.toInt, viewPos1._2.toInt, viewSize._1.toInt, viewSize._2.toInt)
         val lifeSize = size*lifeRate
-        g.fillOval((pos._1 - lifeSize).toInt, (pos._2 - lifeSize).toInt, 2*lifeSize.toInt, 2*lifeSize.toInt)
+        viewPos1 = FieldToView(pos._1 - lifeSize, pos._2 - lifeSize)
+        viewPos2 = FieldToView(pos._1 + lifeSize, pos._2 + lifeSize)
+        viewSize = (viewPos2._1 - viewPos1._1,viewPos2._2 - viewPos1._2)
+        g.fillOval(viewPos1._1.toInt, viewPos1._2.toInt, viewSize._1.toInt, viewSize._2.toInt)
     }
 
-    def drawSelectedActor(g: Graphics2D, pos: (Double, Double), size: Double, lifeRate: Double): Unit = {
-        val c = g.getColor
+    def drawSelectedActor(g: Graphics2D, pos: (Double, Double), size: Double): Unit = {
         g.setColor(Color.yellow)
-        g.fillRect((pos._1 - size).toInt, (pos._2 - size).toInt, 2*size.toInt, 2*size.toInt)
-        g.setColor(c)
-        g.drawOval((pos._1 - size).toInt, (pos._2 - size).toInt, 2*size.toInt, 2*size.toInt)
-        val lifeSize = size*lifeRate
-        g.fillOval((pos._1 - lifeSize).toInt, (pos._2 - lifeSize).toInt, 2*lifeSize.toInt, 2*lifeSize.toInt)
-    }
 
-    def fieldToViewSize(size: Double): Double = {
-        val fieldWidth = right - left
-        val viewWidth = Field.size.width
-
-        size*viewWidth/fieldWidth
+        val viewPos1 = FieldToView(pos._1 - size, pos._2 - size)
+        val viewPos2 = FieldToView(pos._1 + size, pos._2 + size)
+        val viewSize = (viewPos2._1 - viewPos1._1,viewPos2._2 - viewPos1._2)
+        g.fillRect(viewPos1._1.toInt, viewPos1._2.toInt, viewSize._1.toInt, viewSize._2.toInt)
     }
 
     def ViewToField(point: (Double, Double)): (Double, Double) = {
@@ -99,32 +121,45 @@ class DDFightFrame extends MainFrame {
 
     def updateView(): Unit = {
         Field.repaint()
-        //TODO : clear table content
-        //ActionListModel.setContent(new util.Vector[Actor])
-        //ActionLogModel.setContent(new util.Vector[Actor])
+        ActionListTable.repaint()
+        ActionLogTable.repaint()
     }
 
     def loadScene(file: File): Unit = {
-        //TODO
+        val ois = new ObjectInputStream(new FileInputStream(file.getPath))
+        val data: SceneSetup = ois.readObject.asInstanceOf[SceneSetup]
+        InitialScene = data.actorList
+        top = data.top
+        left = data.left
+        bottom = data.bottom
+        right = data.right
+        ois.close()
     }
 
     def saveScene(file: File): Unit = {
-        //TODO
+        val data = new SceneSetup(InitialScene, top, left, bottom, right)
+        val oos = new ObjectOutputStream(new FileOutputStream(file.getPath))
+        oos.writeObject(data)
+        oos.close()
     }
 
     def startSimulation(): Unit = {
         //TODO
     }
 
-    def loadNextScene(): Unit = {
-        if(channel.getQueueSize()>0) {
+    def loadNextScene(): Boolean = {
+        if(isRunning && channel.getQueueSize()>0) {
             currentSceneInstance = channel.pop() match {
                 case Some(s) => s
                 case None => currentSceneInstance
             }
             currentTurn += 1
+            TurnValue.text = currentTurn.toString
+            selectedActor = null
             updateView()
+            true
         }
+        else false
     }
 
     // Mise en place de l'interface
@@ -146,8 +181,20 @@ class DDFightFrame extends MainFrame {
     private val PlayPauseButton = new Button("Play/Pause")
     private val NextButton = new Button("Next")
     private val ActionListModel = new DefaultTableModel
+    private val ActionListTable  = new Table{
+        model = ActionListModel
+        selection.elementMode = Table.ElementMode.Row
+    }
     private val ActionLogModel = new DefaultTableModel
-    private val MonsterListModel = new DefaultTableModel
+    private val ActionLogTable = new Table{
+        model = ActionLogModel
+        selection.elementMode = Table.ElementMode.Row
+    }
+    private val MonsterListModel = new MonsterListModel
+    private val MonsterListTable = new Table {
+        model = MonsterListModel
+        selection.elementMode = Table.ElementMode.Row
+    }
     private val HealthLabel = new Label("Health")
     private val NameLabel = new Label("Name")
     private val PositionLabel = new Label("Position")
@@ -168,16 +215,12 @@ class DDFightFrame extends MainFrame {
 
         //ActionListModel
         contents += new ScrollPane{
-            contents = new Table{
-                model = ActionListModel
-            }
+            contents = ActionListTable
         }
 
         //ActionLogModel
         contents += new ScrollPane{
-            contents = new Table{
-                model = ActionLogModel
-            }
+            contents = ActionLogTable
         }
     }
     private val Field = new Panel{
@@ -187,25 +230,28 @@ class DDFightFrame extends MainFrame {
             g.fillRect(0, 0, size.width, size.height)
 
             //draw mobs
+
+            if(selectedActor !=null) {
+                val model = selectedActor.model
+                if (model.side == ActorSide.Angels) g.setColor(Color.blue)
+                else g.setColor(Color.red)
+                drawSelectedActor(g, (selectedActor.pos._1, selectedActor.pos._2), model.size)
+            }
+
             if(currentSceneInstance.isEmpty && InitialScene.nonEmpty){
                 for(actor <- InitialScene){
                     val model = ActorModel.from(actor.actorType)
                     if(model.side == ActorSide.Angels) g.setColor(Color.blue)
                     else g.setColor(Color.red)
-                    drawActor(g, FieldToView((actor.pos._1, actor.pos._2)), fieldToViewSize(model.size), 1)
+                    drawActor(g, (actor.pos._1, actor.pos._2), model.size, 1)
                 }
             }
             for(actor <- currentSceneInstance){
                 val model = actor.model
                 if(model.side == ActorSide.Angels) g.setColor(Color.blue)
                 else g.setColor(Color.red)
-                drawActor(g, FieldToView((actor.pos._1, actor.pos._2)), fieldToViewSize(model.size), actor.life.current / actor.life.max)
-            }/*
-            val model = selectedActor.model
-            if(model.side == ActorSide.Angels) g.setColor(Color.blue)
-            else g.setColor(Color.red)
-            drawSelectedActor(g, FieldToView(new Point(selectedActor.pos._1.toInt, selectedActor.pos._2.toInt)), fieldToViewSize(model.size), selectedActor.life.current / selectedActor.life.max)
-       */
+                drawActor(g, (actor.pos._1, actor.pos._2), model.size, actor.life.current / actor.life.max)
+            }
         }
     }
     private val Menu = new BoxPanel(Orientation.Horizontal){
@@ -267,9 +313,7 @@ class DDFightFrame extends MainFrame {
 
             //MonsterList
             contents += new ScrollPane{
-                contents = new Table{
-                    model = MonsterListModel
-                }
+                contents = MonsterListTable
             }
         }
     }
@@ -303,6 +347,7 @@ class DDFightFrame extends MainFrame {
                     left = -20
                     bottom = 20
                     right = 20
+                    selectedActor = null
                     updateView()
                 }
             }
@@ -318,6 +363,7 @@ class DDFightFrame extends MainFrame {
                     val res = chooser.showOpenDialog(contents.head)
                     if(res == FileChooser.Result.Approve){
                         loadScene(chooser.selectedFile)
+                        selectedActor = null
                         updateView()
                     }
                 }
@@ -344,6 +390,7 @@ class DDFightFrame extends MainFrame {
                 isRunning = false
                 isPaused = false
                 currentSceneInstance = List()
+                selectedActor = null
                 updateView()
             }
 
@@ -360,7 +407,7 @@ class DDFightFrame extends MainFrame {
 
 
         case ButtonClicked(NextButton) =>
-            if(isRunning){
+            if(isRunning && isPaused){
                 loadNextScene()
             }
 
@@ -398,32 +445,54 @@ class DDFightFrame extends MainFrame {
                 Field.repaint
             }
 
-        case e: MouseClicked => {
+        case e: MouseClicked =>
             val button = e.peer.getButton
             if(button == 1){
-                //TODO
-                //left click
-
+                selectedActor = getClickedActor(ViewToField(e.point.x, e.point.y))
+                if(selectedActor != null){
+                    HealthLabel.text = selectedActor.life.current.toString
+                    NameLabel.text = selectedActor.model.actorType.toString
+                    PositionLabel.text = selectedActor.pos.toString()
+                }
+                else{
+                    HealthLabel.text = ""
+                    NameLabel.text = ""
+                    PositionLabel.text = ""
+                }
+                updateView()
             }
             else if(button == 2){
-                //TODO
-                //middle click
                 if(!isRunning){
-
+                    val actor = getClickedActorSetup(ViewToField(e.point.x, e.point.y))
+                    if(actor != null){
+                        val scene = InitialScene.toBuffer
+                        val index = scene.indexOf(actor)
+                        scene.remove(index, 1)
+                        InitialScene = scene.toList
+                        selectedActor = null
+                    }
+                    updateView()
+                }
+                else{
+                    Dialog.showMessage(contents.head, "Please stop the simulation before editing the scene")
                 }
             }
             else if(button == 3){
-                //TODO : fill actor variable
                 //right click
                 if(!isRunning){
-                    val pos = ViewToField(e.point.x, e.point.y)
-                    val actor = ActorType.Solar
-                    InitialScene = (InitialScene.toBuffer += new ActorSetup(actor, (pos._1.toFloat, pos._2.toFloat))).toList
-                    currentSceneInstance = List()
-                    updateView()
+                    if(MonsterListTable.selection.rows.leadIndex >= 0){
+                        val pos = ViewToField(e.point.x, e.point.y)
+                        val actor = ActorType.values.toList(MonsterListTable.selection.rows.leadIndex)
+                        InitialScene = (InitialScene.toBuffer += new ActorSetup(actor, (pos._1.toFloat, pos._2.toFloat))).toList
+                        currentSceneInstance = List()
+                        selectedActor = null
+                        updateView()
+                    }
+                }
+                else{
+                    Dialog.showMessage(contents.head, "Please stop the simulation before editing the scene")
                 }
             }
-        }
 
         case e: MouseWheelMoved =>
             val fieldHeight = bottom - top
@@ -433,7 +502,7 @@ class DDFightFrame extends MainFrame {
             left -= e.rotation*fieldWidth/10.0
             bottom += e.rotation*fieldHeight/10.0
             right += e.rotation*fieldWidth/10.0
-            Field.repaint()
+            updateView()
 
     }
 
