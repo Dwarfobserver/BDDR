@@ -47,7 +47,7 @@ class DDFightFrame extends MainFrame {
                 val dx = actor.pos._1 - pos._1
                 val dy = actor.pos._2 - pos._2
                 val distance = Math.sqrt(dx * dx + dy * dy)
-                if (distance < ActorModel.from(actor.actorType).size) res = new Actor(1,ActorModel.from(actor.actorType), actor.pos)
+                if (distance < ActorModel.from(actor.actorType).size) res = new Actor(-1,ActorModel.from(actor.actorType), actor.pos)
             }
         }
         res
@@ -130,9 +130,12 @@ class DDFightFrame extends MainFrame {
 
     def updateView(): Unit = {
         Field.repaint()
+        NameLabel.text = if(selectedActor != null) "Name : " + selectedActor.id + " " + selectedActor.model.name.toString else "Name : "
+        HealthLabel.text = if(selectedActor != null) "Health : " +  selectedActor.life.current + "/" + selectedActor.life.max else "Health : "
+        EnergyLabel.text = if(selectedActor != null) "Energy : " +  selectedActor.energy + "/" + selectedActor.model.energy else "Energy : "
+        PositionLabel.text = if(selectedActor != null) "Pos : " +  selectedActor.pos else "Pos : "
         actionListModel.setActor(selectedActor)
         actionLogModel.setActor(selectedActor)
-        //TODO : set list element
     }
 
     def loadScene(file: File): Unit = {
@@ -158,8 +161,8 @@ class DDFightFrame extends MainFrame {
         engine = new Engine(channel, InitialScene)
         engine.start()
         Future{
-            while(isRunning && (!engine.isFinished || channel.getQueueSize()>0)){
-                if(!isPaused){
+            while(isRunning && !engine.isFinished){
+                if(!isPaused && channel.getQueueSize()>0){
                     loadNextScene()
                     Thread.sleep(1000/SpeedSlider.value)
                 }
@@ -218,34 +221,10 @@ class DDFightFrame extends MainFrame {
         model = monsterListModel
         selection.elementMode = Table.ElementMode.Row
     }
-    private val HealthLabel = new Label("")
-    private val NameLabel = new Label("")
-    private val PositionLabel = new Label("")
-    private val Inspector = new BoxPanel(Orientation.Horizontal){
-
-        //BasicInfo
-        contents += new BoxPanel(Orientation.Vertical){
-
-            //NameLabel
-            contents += NameLabel
-
-            //HealthLabel
-            contents += HealthLabel
-
-            //PositionLabel
-            contents += PositionLabel
-        }
-
-        //ActionListModel
-        contents += new ScrollPane{
-            contents = ActionListTable
-        }
-
-        //ActionLogModel
-        contents += new ScrollPane{
-            contents = ActionLogTable
-        }
-    }
+    private val NameLabel = new Label("Name : ")
+    private val HealthLabel = new Label("Health : ")
+    private val EnergyLabel = new Label("Energy : ")
+    private val PositionLabel = new Label("Pos : ")
     private val Field = new Panel{
         override protected def paintComponent(g: Graphics2D): Unit = {
             //clean view
@@ -365,7 +344,34 @@ class DDFightFrame extends MainFrame {
         }
 
         //Inspector
-        contents += Inspector
+        contents += new BoxPanel(Orientation.Horizontal){
+
+            //BasicInfo
+            contents += new BoxPanel(Orientation.Vertical){
+
+                //NameLabel
+                contents += NameLabel
+
+                //HealthLabel
+                contents += HealthLabel
+
+                //EnergyLabel
+                contents += EnergyLabel
+
+                //PositionLabel
+                contents += PositionLabel
+            }
+
+            //ActionListModel
+            contents += new ScrollPane{
+                contents = ActionListTable
+            }
+
+            //ActionLogModel
+            contents += new ScrollPane{
+                contents = ActionLogTable
+            }
+        }
 
         //SceneEditor
         contents += new BoxPanel(Orientation.Vertical){
@@ -559,16 +565,6 @@ class DDFightFrame extends MainFrame {
             val button = e.peer.getButton
             if(button == 1){
                 selectedActor = getClickedActor(ViewToField(e.point.x, e.point.y))
-                if(selectedActor != null){
-                    HealthLabel.text = selectedActor.life.current.toString
-                    NameLabel.text = selectedActor.model.actorType.toString
-                    PositionLabel.text = selectedActor.pos.toString()
-                }
-                else{
-                    HealthLabel.text = ""
-                    NameLabel.text = ""
-                    PositionLabel.text = ""
-                }
                 updateView()
             }
             else if(button == 2){
