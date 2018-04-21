@@ -9,6 +9,8 @@ import scala.concurrent.duration._
 import scala.concurrent.{Await, ExecutionContext, Future}
 import common.{ActorSetup, Channel}
 
+import scala.collection.mutable.ArrayBuffer
+
 // The class which runs the fight
 class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
 {
@@ -32,15 +34,17 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
         Engine.createContext()
         Engine.createGraph(setup)
 
+        val actors = Engine.copyActors()
+        channel.push(actors)
+
         var time = System.currentTimeMillis()
         while (!mustStop.get && !Engine.finished.get) {
             val t2 = System.currentTimeMillis()
             if (t2 - time >= 1000) {
-                println("update")
                 time = t2
                 Engine.updateActors()
-                val actors = Engine.copyActors()
                 Engine.updateGraph()
+                val actors = Engine.copyActors()
                 channel.push(actors)
             }
             else Thread.sleep(10)
@@ -73,8 +77,6 @@ object Engine {
             _ = Actor.add(actor, actor.id)
         } yield (actor.id, ())
 
-        println("init actors count = " + actors.size)
-
         val links = for { // Making a clique
             a1 <- actors
             a2 <- actors
@@ -88,21 +90,24 @@ object Engine {
 
     // Plays a turn
     private def updateActors(): Unit = {
-        if (graph.vertices.count == 1) {
-            finished.set(true)
+        if (graph.vertices.count <= 1) {
+            Engine.finished.set(true)
             return
         }
+
         val id = graph.vertices.first()._1
-        Actor.get(id).life.kill()
+        Actor.get(id).life.kill() // TODO : Why 'dead = true' removes the actor from the graph ?
     }
 
     // Get a list of actors from the graph actors (counting those dead in the last turn)
     private def copyActors(): List[Actor] = {
-        val actors = List()
-        graph.vertices.foreach(vertex =>
-            actors :+ Actor.get(vertex._1).copy())
-        println("actors count = " + actors.size)
-        actors
+        val actors = graph.vertices.keys.collect()
+        val builder = List.newBuilder[Actor]
+
+        builder.sizeHint(actors.length)
+        actors.foreach(id => builder += Actor.get(id).copy())
+
+        builder.result()
     }
 
     // Remove the deads from the graph
@@ -111,11 +116,11 @@ object Engine {
             edge    => {
                 val a1 = Actor.get(edge.srcId)
                 val a2 = Actor.get(edge.dstId)
-                !a1.life.dead && !a2.life.dead
+                a1.life.alive && a2.life.alive
             },
             (id, _) => {
                 val actor = Actor.get(id)
-                !actor.life.dead
+                actor.life.alive
             })
 
         graphCount += 1

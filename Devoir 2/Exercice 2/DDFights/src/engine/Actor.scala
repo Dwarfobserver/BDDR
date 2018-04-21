@@ -1,7 +1,5 @@
 package engine
 
-import scala.collection.mutable
-
 class Actor(val id: Long,
             val model: ActorModel,
             var pos: (Float, Float))
@@ -10,14 +8,16 @@ class Actor(val id: Long,
     val actions: ActionMap = new ActionMap
     var energy: Float = model.energy
     var range: Float = _
+    var turnFinished: Boolean = false
 
     model.makeActions().foreach(action => actions.add(action))
 
     def copy(): Actor = {
         val a = new Actor(id, model, (pos._1, pos._2))
-        a.life.current = life.current
-        a.energy       = energy
-        a.range        = range
+        life.copyTo(a.life)
+        a.turnFinished = false
+        a.energy = energy
+        a.range  = range
         a
     }
 

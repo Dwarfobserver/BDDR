@@ -55,11 +55,14 @@ object ActorModel {
 
         for ((model, jActor) <- models) {
             model.side = ActorSide.withName(jActor("side").asInstanceOf[String])
-            model.life         = jActor("life")        .asInstanceOf[Double].toFloat
-            model.size         = jActor("size")        .asInstanceOf[Double].toFloat
-            model.energy       = jActor("energy")      .asInstanceOf[Double].toFloat
-            model.initiative   = jActor("initiative")  .asInstanceOf[Double].toFloat
-            model.regeneration = jActor("regeneration").asInstanceOf[Double].toFloat
+
+            def jFloatOf(any: Any) = any.asInstanceOf[Double].toFloat
+
+            model.life         = jFloatOf(jActor("life"))
+            model.size         = jFloatOf(jActor("size"))
+            model.energy       = jFloatOf(jActor("energy"))
+            model.initiative   = jFloatOf(jActor("initiative"))
+            model.regeneration = jFloatOf(jActor("regeneration"))
 
             val factories: List[() => Action] = List()
             val ExJMap(jSpells) = jActor("spells")

@@ -23,6 +23,8 @@ object Main extends App {
     val scene = List(
         new ActorSetup(ActorType.Solar, (10, 20)),
         new ActorSetup(ActorType.OrcBarbarian, (-10, 12)),
+        new ActorSetup(ActorType.OrcBarbarian, (-11, 14)),
+        new ActorSetup(ActorType.OrcBarbarian, (-11, 14)),
         new ActorSetup(ActorType.OrcBarbarian, (-11, 14))
     )
 
@@ -46,7 +48,7 @@ object Main extends App {
         opt match {
             case None => // Nothing
             case Some(actors) =>
-                println("actors alive : " + actors.size)
+                println("actors : " + actors.size)
         }
     }
 
