@@ -1,12 +1,14 @@
 
+import UI.DDFightFrame
 import common._
 import engine.{Actor, Engine}
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.{SparkConf, SparkContext}
 
 import scala.concurrent.{ExecutionContext, Future}
+import scala.swing.SimpleSwingApplication
 
-object Main extends App {
+object Main extends SimpleSwingApplication {
 /*
     println("Initialize Spark ...")
 
@@ -16,7 +18,7 @@ object Main extends App {
     val sc = new SparkContext(conf)
 
     println("Spark initialized")
-*/
+
     // Sample code
 
     // Create a scene (maybe from a json or the GUI)
@@ -66,4 +68,8 @@ object Main extends App {
     engine.stop()
 
     println("Engine stopped")
+
+    */
+
+    val top = new DDFightFrame
 }
