@@ -5,7 +5,6 @@ import java.io._
 
 import scala.swing._
 import scala.swing.event._
-
 import common._
 import engine.{Actor, ActorModel, Engine}
 
@@ -130,6 +129,7 @@ class DDFightFrame extends MainFrame {
 
     def updateView(): Unit = {
         Field.repaint()
+        TurnValue.text = currentTurn.toString
         NameLabel.text = if(selectedActor != null) "Name : " + selectedActor.id + " " + selectedActor.model.name.toString else "Name : "
         HealthLabel.text = if(selectedActor != null) "Health : " +  selectedActor.life.current + "/" + selectedActor.life.max else "Health : "
         EnergyLabel.text = if(selectedActor != null) "Energy : " +  selectedActor.energy + "/" + selectedActor.model.energy else "Energy : "
@@ -181,7 +181,6 @@ class DDFightFrame extends MainFrame {
                     s
                 case None => currentSceneInstance
             }
-            TurnValue.text = currentTurn.toString
             selectedActor = null
             updateView()
             true

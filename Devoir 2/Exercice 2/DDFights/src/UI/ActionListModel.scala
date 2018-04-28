@@ -1,36 +1,30 @@
 package UI
 
 import engine.Actor
-import javax.swing.event.TableModelListener
-import javax.swing.table.TableModel
+import javax.swing.table.AbstractTableModel
 
-import scala.collection.mutable.ListBuffer
-
-class ActionListModel() extends TableModel{
+class ActionListModel() extends AbstractTableModel{
 
     private var _actor: Actor = _
-    private var _listeners: ListBuffer[TableModelListener] = ListBuffer()
-
-    override def removeTableModelListener(l: TableModelListener): Unit = _listeners -= l
-
-    override def getColumnClass(columnIndex: Int): Class[_] = "".getClass
 
     override def getColumnCount: Int = 1
 
     override def getColumnName(columnIndex: Int): String = "Action List"
 
-    override def getRowCount: Int = 0
+    override def getRowCount: Int = {
+        if(_actor != null) _actor.actions.getContent.size
+        else 0
+    }
 
-    override def getValueAt(rowIndex: Int, columnIndex: Int): AnyRef = ""
-
-    override def addTableModelListener(l: TableModelListener): Unit = _listeners += l
-
-    override def setValueAt(aValue: scala.Any, rowIndex: Int, columnIndex: Int): Unit = {}
+    override def getValueAt(rowIndex: Int, columnIndex: Int): AnyRef = {
+        _actor.actions.getContent.toVector(rowIndex)
+    }
 
     override def isCellEditable(rowIndex: Int, columnIndex: Int): Boolean = false
 
     def setActor(actor: Actor): Unit ={
         _actor = actor
+        fireTableStructureChanged()
     }
 
 }

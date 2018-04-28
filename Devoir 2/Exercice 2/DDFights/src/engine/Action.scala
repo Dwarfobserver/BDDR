@@ -14,6 +14,8 @@ object Action {
 class ActionMap {
     private var map: Map[ActionId.Value, Action] = Map()
 
+    def getContent: Iterable[ActionId.Value] = map.keys
+
     def add(action: Action): Unit = {
         if (map.contains(action.id)) throw new Exception("Tried to add two actions with the same id")
         map += (kv = (action.id, action))
