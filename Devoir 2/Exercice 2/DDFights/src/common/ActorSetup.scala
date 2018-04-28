@@ -1,7 +1,7 @@
 package common
 
 // Describes an actor in a scene configuration
-@SerialVersionUID(100L)
+@SerialVersionUID(101L)
 class ActorSetup(val actorType: ActorType.Value, val pos: (Float, Float)) extends Serializable {
     override def toString: String = {
         actorType + " : ("

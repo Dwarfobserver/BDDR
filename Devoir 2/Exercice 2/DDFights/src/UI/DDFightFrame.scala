@@ -176,10 +176,11 @@ class DDFightFrame extends MainFrame {
     def loadNextScene(): Boolean = {
         if(isRunning && channel.getQueueSize()>0) {
             currentSceneInstance = channel.pop() match {
-                case Some(s) => s
+                case Some(s) =>
+                    currentTurn += 1
+                    s
                 case None => currentSceneInstance
             }
-            currentTurn += 1
             TurnValue.text = currentTurn.toString
             selectedActor = null
             updateView()
