@@ -9,6 +9,7 @@ import common._
 import engine.{Actor, ActorModel, Engine}
 
 import scala.concurrent.{ExecutionContext, Future}
+import scala.swing.GridBagPanel.{Anchor, Fill}
 
 class DDFightFrame extends MainFrame {
 
@@ -288,10 +289,17 @@ class DDFightFrame extends MainFrame {
             }
         }
     }
-    private val Menu = new BoxPanel(Orientation.Horizontal){
+    private val Menu = new GridBagPanel(){
+        val c = new Constraints
 
         //SceneManager
-        contents += new BoxPanel(Orientation.Vertical){
+        c.fill = Fill.None
+        c.weightx = 0.05
+        c.weighty = 0
+        c.grid = (0, 0)
+        c.anchor = Anchor.Center
+        c.insets = new Insets(10, 10, 10, 10)
+        layout(new BoxPanel(Orientation.Vertical){
 
             //CreateButton
             contents += CreateButton
@@ -301,10 +309,31 @@ class DDFightFrame extends MainFrame {
 
             //SaveButton
             contents += SaveButton
-        }
+        }) = c
+
+        //SceneEditor
+        c.fill = Fill.Both
+        c.weightx = 0.1
+        c.weighty = 1
+        c.grid = (1, 0)
+        c.anchor = Anchor.Center
+        c.insets = new Insets(10, 10, 10, 10)
+        layout(new BoxPanel(Orientation.Vertical){
+
+            //MonsterList
+            contents += new ScrollPane{
+                contents = MonsterListTable
+            }
+        }) = c
 
         //SimulationManager
-        contents += new BoxPanel(Orientation.Vertical){
+        c.fill = Fill.Horizontal
+        c.weightx = 0.2
+        c.weighty = 0
+        c.grid = (2, 0)
+        c.anchor = Anchor.Center
+        c.insets = new Insets(10, 10, 10, 10)
+        layout(new BoxPanel(Orientation.Vertical){
 
             //SceneStatus
             contents += new BoxPanel(Orientation.Horizontal){
@@ -337,10 +366,16 @@ class DDFightFrame extends MainFrame {
                 //NextButton
                 contents += NextButton
             }
-        }
+        }) = c
 
         //Inspector
-        contents += new BoxPanel(Orientation.Horizontal){
+        c.fill = Fill.Both
+        c.weightx = 0.2
+        c.weighty = 1
+        c.grid = (3, 0)
+        c.anchor = Anchor.Center
+        c.insets = new Insets(10, 10, 10, 10)
+        layout(new BoxPanel(Orientation.Horizontal){
 
             //BasicInfo
             contents += new BoxPanel(Orientation.Vertical){
@@ -364,20 +399,26 @@ class DDFightFrame extends MainFrame {
             contents += new ScrollPane{
                 contents = ActionLogTable
             }
-        }
+        }) = c
 
-        //SceneEditor
-        contents += new BoxPanel(Orientation.Vertical){
 
-            //MonsterList
-            contents += new ScrollPane{
-                contents = MonsterListTable
-            }
-        }
     }
-    private val WindowSplitContainer = new SplitPane(Orientation.Horizontal, Field,  Menu)
-    contents = WindowSplitContainer
-    WindowSplitContainer.dividerLocation = 0.75
+    private val MainContainer = new GridBagPanel(){
+        val c = new Constraints
+
+        c.fill = Fill.Both
+        c.weightx = 1
+        c.weighty = 0.80
+        c.grid = (0, 0)
+        layout(Field) = c
+
+        c.weightx = 1
+        c.weighty = 0.20
+        c.grid = (0, 1)
+        layout(Menu) = c
+    }
+    contents = MainContainer
+    maximize()
 
     //Définition du comportement des composants
     listenTo(CreateButton)
