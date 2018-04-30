@@ -172,20 +172,16 @@ class DDFightFrame extends MainFrame {
     }
 
     def loadNextScene(): Boolean = {
-        //currentSceneInstance
-        val temp = channel.pop() match{
-            case Some(s) => s
-            case None => null
-        }
-        if(temp == null){
-            false
-        }
-        else{
-            currentTurn += 1
-            currentSceneInstance = temp
-            selectedActor = null
-            updateView()
-            true
+        channel.pop() match{
+            case Some(s) =>
+                currentTurn += 1
+                currentSceneInstance = s
+                selectedActor = null
+                updateView()
+                true
+
+            case None =>
+                false
         }
     }
 
@@ -562,7 +558,7 @@ class DDFightFrame extends MainFrame {
             val button = e.peer.getButton
             if(button == 1){
                 selectedActor = getClickedActor(ViewToField(e.point.x, e.point.y))
-                selectedActor.initialize(ActorModel.from(selectedActor.t))
+                if(selectedActor != null) selectedActor.initialize(ActorModel.from(selectedActor.t))
                 updateView()
             }
             else if(button == 2){
