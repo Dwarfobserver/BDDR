@@ -160,7 +160,7 @@ class DDFightFrame extends MainFrame {
         engine = new Engine(channel, InitialScene)
         engine.start()
         Future{
-            while(isRunning && !engine.isFinished){
+            while(isRunning){
                 if(!isPaused){
                     if(loadNextScene()) Thread.sleep(1000/SpeedSlider.value)
                 }
