@@ -49,10 +49,12 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
         val actors = copyActors()
         channel.push(actors)
 
+        checkIfFinished()
         while (!mustStop.get && !finished.get) {
             updateActors()
             val actors = copyActors()
             channel.push(actors)
+            checkIfFinished()
         }
         cleanup()
     }
@@ -76,6 +78,8 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
 
         val models = ActorType.values.map(t => (t, ActorModel.from(t))).toMap
 
+        bModels = sc.broadcast(models)
+
         val ids    = Iterator.from(1)
         val actors = for {
             info <- setup
@@ -92,7 +96,6 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
         else
             orcs.next()
 
-        bModels = sc.broadcast(models)
         aAngels = sc.accumulator(angels.next())
         aOrcs   = sc.accumulator(orcs.next())
 
@@ -106,6 +109,24 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
         } yield Edge(a1.id, a2.id, ()))
 
         graph = Graph(vertices, edges)
+    }
+
+    private def checkIfFinished(): Unit = {
+
+        val (angels, orcs) = graph.vertices.collect()
+            .filter(pair => {
+                pair._2.life.alive
+            })
+            .map(pair => {
+                val side = bModels.value(pair._2.t).side
+                if (side == ActorSide.Angels)
+                     (1, 0)
+                else (0, 1)
+            })
+            .reduce((p1, p2) => (p1._1 + p2._1, p1._2 + p2._2))
+
+        if (angels == 0 || orcs == 0)
+            finished.set(true)
     }
 
     // Plays a turn
@@ -127,5 +148,4 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
     private def copyActors(): List[Actor] = {
         graph.vertices.values.collect().toList
     }
-
 }
