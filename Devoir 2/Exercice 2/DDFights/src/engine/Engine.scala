@@ -129,7 +129,8 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
 
     // Get a list of actors from the graph actors (with those dead)
     private def copyActors(): List[Actor] = {
-        graph.vertices.values.collect().toList
+        val actors = graph.vertices.values.collect()
+        actors.map(_.copy()).toList
     }
 
 }
