@@ -49,16 +49,10 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
         val actors = copyActors()
         channel.push(actors)
 
-        var time = System.currentTimeMillis()
         while (!mustStop.get && !finished.get) {
-            val t2 = System.currentTimeMillis()
-            if (t2 - time >= 1000) {
-                time = t2
-                updateActors()
-                val actors = copyActors()
-                channel.push(actors)
-            }
-            else Thread.sleep(10)
+            updateActors()
+            val actors = copyActors()
+            channel.push(actors)
         }
         cleanup()
     }
@@ -79,10 +73,8 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
 
     // Create the accumulators, the actors, the broadcast variables and the graph
     private def createDistributedData(): Unit = {
-        val models = {
-            for (t <- ActorType.values)
-                yield (t, ActorModel.from(t))
-        }.toMap
+
+        val models = ActorType.values.map(t => (t, ActorModel.from(t))).toMap
 
         val ids    = Iterator.from(1)
         val actors = for {
@@ -118,19 +110,22 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
 
     // Plays a turn
     private def updateActors(): Unit = {
-        if (graph.vertices.count <= 1) {
-            finished.set(true)
-            return
-        }
 
-        val actor = graph.vertices.first()._2
-        actor.life.kill()
+        val targetId = graph.vertices
+            .filter(_._2.life.alive)
+            .map   (_._1)
+            .reduce((a, b) => a max b)
+
+        graph = graph.mapVertices((id, actor) => {
+            if (id == targetId)
+                actor.life.kill()
+            actor
+        })
     }
 
     // Get a list of actors from the graph actors (with those dead)
     private def copyActors(): List[Actor] = {
-        val actors = graph.vertices.values.collect()
-        actors.map(_.copy()).toList
+        graph.vertices.values.collect().toList
     }
 
 }

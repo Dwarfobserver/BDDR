@@ -21,6 +21,7 @@ class ActorModel(val actorType: ActorType.Value) extends Serializable {
 }
 
 object ActorModel {
+    implicit def ActorModelOrdering: Ordering[ActorModel] = Ordering.by(_.name)
 
     // Access the model of the given actor type
     def from(actorType: ActorType.Value) = models(actorType)
