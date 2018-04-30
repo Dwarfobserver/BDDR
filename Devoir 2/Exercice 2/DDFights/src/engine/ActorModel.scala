@@ -64,14 +64,15 @@ object ActorModel {
             model.initiative   = jFloatOf(jActor("initiative"))
             model.regeneration = jFloatOf(jActor("regeneration"))
 
-            val factories: List[() => Action] = List()
             val ExJMap(jSpells) = jActor("spells")
-            for ((key, value) <- jSpells) {
-                val id = ActionId.withName(key)
-                val ExJMap(jSpell) = value
-                factories :+ (() => Action.from(id, jSpell))
-            }
-            model.makeActions = () => for (f <- factories) yield f()
+            val factories = for {
+                (key, value) <- jSpells
+                id = ActionId.withName(key)
+                ExJMap(jSpell) = value
+            } yield () => Action.from(id, jSpell)
+
+            model.makeActions = () =>
+                (for (f <- factories) yield f()).toList
 
             map += (kv = (model.actorType, model))
         }

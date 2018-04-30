@@ -9,20 +9,23 @@ import scala.concurrent.duration._
 import scala.concurrent.{Await, ExecutionContext, Future}
 import common.{ActorSetup, Channel}
 
-import scala.collection.mutable.ArrayBuffer
-
 // The class which runs the fight
 class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
 {
     private val mustStop = new AtomicBoolean(false)
     private var task: Future[Unit] = _
+    private [engine] var sc: SparkContext = _
+    private [engine] var graph: Graph[Unit, Unit] = _
+    private val finished = new AtomicBoolean(false)
+    private var turnCount = 1
+    private var graphCount = 0
 
     // Start the engine asynchronously
     def start(): Unit = {
         task = Future { run() } (ExecutionContext.global)
     }
 
-    def isFinished: Boolean = Engine.finished.get
+    def isFinished: Boolean = finished.get
 
     // Ask the engine to stop, then wait him to finish
     def stop(): Unit = {
@@ -31,33 +34,28 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
     }
 
     private def run(): Unit = {
-        Engine.createContext()
-        Engine.createGraph(setup)
+        createContext()
 
-        val actors = Engine.copyActors()
+        println("Spark context created")
+
+        createGraph(setup)
+
+        val actors = copyActors()
         channel.push(actors)
 
         var time = System.currentTimeMillis()
-        while (!mustStop.get && !Engine.finished.get) {
+        while (!mustStop.get && !finished.get) {
             val t2 = System.currentTimeMillis()
             if (t2 - time >= 1000) {
                 time = t2
-                Engine.updateActors()
-                Engine.updateGraph()
-                val actors = Engine.copyActors()
+                updateActors()
+                updateGraph()
+                val actors = copyActors()
                 channel.push(actors)
             }
             else Thread.sleep(10)
         }
     }
-
-}
-object Engine {
-    private [engine] var sc: SparkContext = _
-    private [engine] var graph: Graph[Unit, Unit] = _
-    private val finished = new AtomicBoolean(false)
-    private var turnCount = 1
-    private var graphCount = 0
 
     // Create the Apache context
     private def createContext(): Unit = {
@@ -91,7 +89,7 @@ object Engine {
     // Plays a turn
     private def updateActors(): Unit = {
         if (graph.vertices.count <= 1) {
-            Engine.finished.set(true)
+            finished.set(true)
             return
         }
 
@@ -125,5 +123,4 @@ object Engine {
 
         graphCount += 1
     }
-
 }

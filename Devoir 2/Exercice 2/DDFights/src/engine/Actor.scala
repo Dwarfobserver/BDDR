@@ -10,7 +10,7 @@ class Actor(val id: Long,
     var range: Float = _
     var turnFinished: Boolean = false
 
-    model.makeActions().foreach(action => actions.add(action))
+    model.makeActions().foreach(actions.add)
 
     def copy(): Actor = {
         val a = new Actor(id, model, (pos._1, pos._2))

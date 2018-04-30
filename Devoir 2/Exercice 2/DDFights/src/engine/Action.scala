@@ -6,7 +6,10 @@ abstract class Action(val id: ActionId.Value) {
     def update() : Unit
 }
 object Action {
-    var factories: Map[ActionId.Value, Map[String, Any] => Action] = _
+    var factories: Map[ActionId.Value, Map[String, Any] => Action] = Map()
+
+    actions.Move
+    actions.Attack
 
     def from(id: ActionId.Value, jSpell: Map[String, Any]) : Action = factories(id)(jSpell)
 }
@@ -31,4 +34,3 @@ object ActionId extends Enumeration {
     val Move:   Value = Value("Move")
     val Attack: Value = Value("Attack")
 }
-
