@@ -17,7 +17,7 @@ class ActionListModel() extends AbstractTableModel{
     }
 
     override def getValueAt(rowIndex: Int, columnIndex: Int): AnyRef = {
-        ActorModel.from(_actor.t).actions.toVector(rowIndex)
+        ActorModel.from(_actor.t).actions.keys.toVector(rowIndex)
     }
 
     override def isCellEditable(rowIndex: Int, columnIndex: Int): Boolean = false
