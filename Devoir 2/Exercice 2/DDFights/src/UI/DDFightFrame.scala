@@ -38,7 +38,7 @@ class DDFightFrame extends MainFrame {
                 val dx = actor.pos._1 - pos._1
                 val dy = actor.pos._2 - pos._2
                 val distance = Math.sqrt(dx * dx + dy * dy)
-                if (distance < actor.model.size) res = actor
+                if (distance < ActorModel.from(actor.t).size) res = actor
             }
         }
         else{
@@ -46,7 +46,7 @@ class DDFightFrame extends MainFrame {
                 val dx = actor.pos._1 - pos._1
                 val dy = actor.pos._2 - pos._2
                 val distance = Math.sqrt(dx * dx + dy * dy)
-                if (distance < ActorModel.from(actor.actorType).size) res = new Actor(-1,ActorModel.from(actor.actorType), actor.pos)
+                if (distance < ActorModel.from(actor.actorType).size) res = new Actor(-1,actor.actorType, actor.pos)
             }
         }
         res
@@ -130,9 +130,8 @@ class DDFightFrame extends MainFrame {
     def updateView(): Unit = {
         Field.repaint()
         TurnValue.text = currentTurn.toString
-        NameLabel.text = if(selectedActor != null) "Name : " + selectedActor.id + " " + selectedActor.model.name.toString else "Name : "
+        NameLabel.text = if(selectedActor != null) "Name : " + selectedActor.id + " " + selectedActor.t.toString else "Name : "
         HealthLabel.text = if(selectedActor != null) "Health : " +  selectedActor.life.current + "/" + selectedActor.life.max else "Health : "
-        EnergyLabel.text = if(selectedActor != null) "Energy : " +  selectedActor.energy + "/" + selectedActor.model.energy else "Energy : "
         PositionLabel.text = if(selectedActor != null) "Pos : " +  selectedActor.pos else "Pos : "
         actionListModel.setActor(selectedActor)
         actionLogModel.setActor(selectedActor)
@@ -162,9 +161,8 @@ class DDFightFrame extends MainFrame {
         engine.start()
         Future{
             while(isRunning && !engine.isFinished){
-                if(!isPaused && channel.getQueueSize()>0){
-                    loadNextScene()
-                    Thread.sleep(1000/SpeedSlider.value)
+                if(!isPaused){
+                    if(loadNextScene()) Thread.sleep(1000/SpeedSlider.value)
                 }
             }
             engine.stop()
@@ -174,18 +172,21 @@ class DDFightFrame extends MainFrame {
     }
 
     def loadNextScene(): Boolean = {
-        if(isRunning && channel.getQueueSize()>0) {
-            currentSceneInstance = channel.pop() match {
-                case Some(s) =>
-                    currentTurn += 1
-                    s
-                case None => currentSceneInstance
-            }
+        //currentSceneInstance
+        val temp = channel.pop() match{
+            case Some(s) => s
+            case None => null
+        }
+        if(temp == null){
+            false
+        }
+        else{
+            currentTurn += 1
+            currentSceneInstance = temp
             selectedActor = null
             updateView()
             true
         }
-        else false
     }
 
     // Mise en place de l'interface
@@ -223,7 +224,6 @@ class DDFightFrame extends MainFrame {
     }
     private val NameLabel = new Label("Name : ")
     private val HealthLabel = new Label("Health : ")
-    private val EnergyLabel = new Label("Energy : ")
     private val PositionLabel = new Label("Pos : ")
     private val Field = new Panel{
         override protected def paintComponent(g: Graphics2D): Unit = {
@@ -234,7 +234,7 @@ class DDFightFrame extends MainFrame {
             //draw mobs
 
             if(selectedActor !=null) {
-                val model = selectedActor.model
+                val model = ActorModel.from(selectedActor.t)
                 if (model.side == ActorSide.Angels) g.setColor(Color.blue)
                 else g.setColor(Color.red)
                 drawSelectedActor(g, (selectedActor.pos._1, selectedActor.pos._2), model.size)
@@ -250,7 +250,7 @@ class DDFightFrame extends MainFrame {
             }
             else if(currentSceneInstance != null){
                 for(actor <- currentSceneInstance){
-                    val model = actor.model
+                    val model = ActorModel.from(actor.t)
                     if(model.side == ActorSide.Angels) g.setColor(Color.blue)
                     else g.setColor(Color.red)
                     drawActor(g, (actor.pos._1, actor.pos._2), model.size, actor.life.current / actor.life.max)
@@ -355,9 +355,6 @@ class DDFightFrame extends MainFrame {
                 //HealthLabel
                 contents += HealthLabel
 
-                //EnergyLabel
-                contents += EnergyLabel
-
                 //PositionLabel
                 contents += PositionLabel
             }
@@ -456,7 +453,7 @@ class DDFightFrame extends MainFrame {
                 isPaused = false
                 currentSceneInstance = null
                 selectedActor = null
-                TurnValue.text = "0"
+                currentTurn = 0
                 updateView()
             }
 
@@ -565,6 +562,7 @@ class DDFightFrame extends MainFrame {
             val button = e.peer.getButton
             if(button == 1){
                 selectedActor = getClickedActor(ViewToField(e.point.x, e.point.y))
+                selectedActor.initialize(ActorModel.from(selectedActor.t))
                 updateView()
             }
             else if(button == 2){

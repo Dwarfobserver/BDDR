@@ -1,6 +1,6 @@
 package UI
 
-import engine.Actor
+import engine.{Actor, ActorModel}
 import javax.swing.table.AbstractTableModel
 
 class ActionListModel() extends AbstractTableModel{
@@ -12,12 +12,12 @@ class ActionListModel() extends AbstractTableModel{
     override def getColumnName(columnIndex: Int): String = "Action List"
 
     override def getRowCount: Int = {
-        if(_actor != null) _actor.actions.getContent.size
+        if(_actor != null) ActorModel.from(_actor.t).actions.size
         else 0
     }
 
     override def getValueAt(rowIndex: Int, columnIndex: Int): AnyRef = {
-        _actor.actions.getContent.toVector(rowIndex)
+        ActorModel.from(_actor.t).actions.toVector(rowIndex)
     }
 
     override def isCellEditable(rowIndex: Int, columnIndex: Int): Boolean = false
