@@ -1,6 +1,6 @@
 package engine
 
-abstract class Action(val id: ActionId.Value) {
+abstract class Action(val id: ActionId.Value) extends Serializable {
     def priority(actor: Actor) : Float
     def execute (actor: Actor) : Unit
     def update() : Unit
@@ -14,7 +14,7 @@ object Action {
     def from(id: ActionId.Value, jSpell: Map[String, Any]) : Action = factories(id)(jSpell)
 }
 
-class ActionMap {
+class ActionMap extends Serializable {
     private var map: Map[ActionId.Value, Action] = Map()
 
     def getContent: Iterable[ActionId.Value] = map.keys

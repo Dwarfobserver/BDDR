@@ -8,7 +8,8 @@ import scala.io.Source
 import scala.util.parsing.json.JSON
 
 // Lists all characteristics for a type of actor
-class ActorModel(val actorType: ActorType.Value) {
+// @SerialVersionUID(753951L)
+class ActorModel(val actorType: ActorType.Value) extends Serializable {
     val name: String = actorType.toString
     var side: ActorSide.Value = _
     var life: Float = _
@@ -16,8 +17,9 @@ class ActorModel(val actorType: ActorType.Value) {
     var energy: Float = _
     var initiative: Float = _
     var regeneration: Float = _
-    var makeActions: () => List[Action] = _
+    var actions: Map[ActionId.Value, Action] = _
 }
+
 object ActorModel {
 
     // Access the model of the given actor type
@@ -48,10 +50,12 @@ object ActorModel {
 
         val models = for {
             ExJMap(jActors) <- List(json)
-            (name, data)  <- jActors
+            (name, data)    <- jActors
             ExModel(model) = name
             ExJMap(jActor) = data
         } yield (model, jActor)
+
+        // Fill each model with it's data
 
         for ((model, jActor) <- models) {
             model.side = ActorSide.withName(jActor("side").asInstanceOf[String])
@@ -65,14 +69,13 @@ object ActorModel {
             model.regeneration = jFloatOf(jActor("regeneration"))
 
             val ExJMap(jSpells) = jActor("spells")
-            val factories = for {
-                (key, value) <- jSpells
-                id = ActionId.withName(key)
-                ExJMap(jSpell) = value
-            } yield () => Action.from(id, jSpell)
-
-            model.makeActions = () =>
-                (for (f <- factories) yield f()).toList
+            model.actions = {
+                for {
+                    (key, value) <- jSpells
+                    id = ActionId.withName(key)
+                    ExJMap(jSpell) = value
+                } yield (id, Action.from(id, jSpell))
+            }.toMap
 
             map += (kv = (model.actorType, model))
         }

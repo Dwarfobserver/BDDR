@@ -33,8 +33,4 @@ class Channel[T]() {
         finally
             lock.unlock()
     }
-
-    def getQueueSize() : Int = {
-        queue.size
-    }
 }
