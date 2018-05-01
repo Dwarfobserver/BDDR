@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 import scala.concurrent.duration._
 import scala.concurrent.{Await, ExecutionContext, Future}
 import common.{ActorSide, _}
+import engine.actions.{Attack, Move}
 
 // The class which runs the fight
 class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
@@ -144,7 +145,6 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
         })
         */
 
-        println("plop")
         val targets = graph.aggregateMessages[(VertexId, Double, Health)](
             //sendMessage
             triplet => {
@@ -152,8 +152,10 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
                 val dstPos = triplet.dstAttr.pos
                 val srcPos = triplet.srcAttr.pos
                 val distance = Math.sqrt(Math.pow(dstPos._1-srcPos._1, 2) + Math.pow(dstPos._2-srcPos._2, 2))
+                val srcSide = ActorModel.from(triplet.srcAttr.t).side
+                val dstSide = ActorModel.from(triplet.dstAttr.t).side
 
-                triplet.sendToDst((triplet.srcId, distance, triplet.srcAttr.life))
+                if(srcSide != dstSide) triplet.sendToDst((triplet.srcId, distance, triplet.srcAttr.life))
             },
 
             //aggregate
