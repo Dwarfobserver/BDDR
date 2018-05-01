@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 import scala.concurrent.duration._
 import scala.concurrent.{Await, ExecutionContext, Future}
-import common._
+import common.{ActorSide, _}
 
 // The class which runs the fight
 class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
@@ -131,7 +131,7 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
 
     // Plays a turn
     private def updateActors(): Unit = {
-
+        /*
         val targetId = graph.vertices
             .filter(_._2.life.alive)
             .map   (_._1)
@@ -142,10 +142,34 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
                 actor.life.kill()
             actor
         })
+        */
+
+        println("plop")
+        val targets = graph.aggregateMessages[(VertexId, Double, Health)](
+            //sendMessage
+            triplet => {
+                val dstPos = triplet.dstAttr.pos
+                val srcPos = triplet.srcAttr.pos
+                val distance = Math.sqrt(Math.pow(dstPos._1-srcPos._1, 2) + Math.pow(dstPos._2-srcPos._2, 2))
+                triplet.sendToDst(triplet.srcId, distance, triplet.srcAttr.life)
+            },
+
+            //aggregate
+            (a, b) => {
+                if(computeHostility(a._2, a._3) > computeHostility(b._2, b._3)) a else b
+            }
+
+
+        )
+
     }
 
     // Get a list of actors from the graph actors (with those dead)
     private def copyActors(): List[Actor] = {
         graph.vertices.values.collect().toList
+    }
+
+    private def computeHostility(distance: Double, targetHealth: Health): Double = {
+        10000/(Math.min(Math.max(1, distance), 100) * targetHealth.current)
     }
 }
