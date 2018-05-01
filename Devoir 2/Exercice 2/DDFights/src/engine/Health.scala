@@ -4,6 +4,7 @@ import engine.Elements._
 
 import scala.collection.mutable
 
+@SerialVersionUID(103L)
 class Health(val max: Float) extends Serializable {
     var current: Float = max
     val resistances: mutable.Map[Elements.Value, Float] = mutable.Map(
