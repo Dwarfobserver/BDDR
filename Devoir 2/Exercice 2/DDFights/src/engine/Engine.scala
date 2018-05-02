@@ -19,11 +19,8 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
     private var sc: SparkContext = _
     private var graph: Graph[Actor, Unit] = _
     private val finished = new AtomicBoolean(false)
-    private var turnCount = 1
 
     private var bModels: Broadcast[Map[ActorType.Value, ActorModel]] = _
-    private var aAngels: Accumulator[Int] = _
-    private var aOrcs:   Accumulator[Int] = _
 
     // Start the engine asynchronously
     def start(): Unit = {
@@ -74,7 +71,7 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
         sc.stop()
     }
 
-    // Create the accumulators, the actors, the broadcast variables and the graph
+    // Create the actors, the broadcast variables and the graph
     private def createDistributedData(): Unit = {
 
         val models = ActorType.values.map(t => (t, ActorModel.from(t))).toMap
@@ -97,9 +94,6 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
         else
             orcs.next()
 
-        aAngels = sc.accumulator(angels.next())
-        aOrcs   = sc.accumulator(orcs.next())
-
         val vertices = sc.parallelize(
             for (a <- actors) yield (a.id, a))
 
@@ -114,7 +108,9 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
 
     private def checkIfFinished(): Unit = {
 
-        val (angels, orcs) = graph.vertices.collect()
+        // Count the angels & arcs :
+        // If one side is empty, stop the engine
+        val (angels, orcs) = graph.vertices
             .filter(pair => {
                 pair._2.life.alive
             })
@@ -132,41 +128,57 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
 
     // Plays a turn
     private def updateActors(): Unit = {
-        /*
-        val targetId = graph.vertices
-            .filter(_._2.life.alive)
-            .map   (_._1)
-            .reduce((a, b) => a max b)
 
-        graph = graph.mapVertices((id, actor) => {
-            if (id == targetId)
-                actor.life.kill()
-            actor
-        })
-        */
+        class Message(val actor: Actor, val target: Actor, val distance: Double, val pv: Double)
 
-        val targets = graph.aggregateMessages[(VertexId, Double, Health)](
-            //sendMessage
+        // Give to each actor his best target
+        val targets = graph.aggregateMessages[Message](
+
+            // Send messages
             triplet => {
+                if (triplet.srcAttr.life.dead) return
+
+                val srcSide = bModels.value(triplet.srcAttr.t).side
+                val dstSide = bModels.value(triplet.dstAttr.t).side
+
+                if (srcSide == dstSide) return
 
                 val dstPos = triplet.dstAttr.pos
                 val srcPos = triplet.srcAttr.pos
                 val distance = Math.sqrt(Math.pow(dstPos._1-srcPos._1, 2) + Math.pow(dstPos._2-srcPos._2, 2))
-                val srcSide = ActorModel.from(triplet.srcAttr.t).side
-                val dstSide = ActorModel.from(triplet.dstAttr.t).side
 
-                if(srcSide != dstSide) triplet.sendToDst((triplet.srcId, distance, triplet.srcAttr.life))
+                val msg = new Message(
+                    triplet.dstAttr,
+                    triplet.srcAttr,
+                    distance,
+                    triplet.srcAttr.life.current)
+                triplet.sendToDst(msg)
             },
 
-            //aggregate
+            // Aggregate messages
             (a, b) => {
-
-                val hostilityA = 10000/(Math.min(Math.max(1, a._2), 100) * Math.min(a._3.current,100))
-                val hostilityB = 10000/(Math.min(Math.max(1, b._2), 100) * Math.min(b._3.current,100))
+                val hostilityA = 10000/(Math.min(Math.max(1, a.distance), 100) * Math.min(a.pv,100))
+                val hostilityB = 10000/(Math.min(Math.max(1, b.distance), 100) * Math.min(b.pv,100))
 
                 if(hostilityA > hostilityB) a else b
-            }
-        )
+            })
+
+        class MsgData
+        case class MoveData(actor:  VertexId, pos: (Float, Float)) extends MsgData
+        case class HurtData(target: VertexId, dmg: Float) extends MsgData
+
+        // Make each actor attack or move towards his target
+        val messages = targets
+            .map(info => {
+                val model = bModels.value(info._2.actor.t)
+                val attack = model.actions(ActionId.Attack).asInstanceOf[actions.Attack]
+                // Take distance and approach actor
+                if (info._2.distance > 2)
+                    return //MoveData(info._2.actor.id, (x, y))
+                else
+                    return HurtData(info._1, attack.damages)
+            })
+
     }
 
     // Get a list of actors from the graph actors (with those dead)
