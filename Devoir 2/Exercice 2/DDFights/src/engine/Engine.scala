@@ -46,7 +46,6 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
 
         val actors = copyActors()
         channel.push(actors)
-
         checkIfFinished()
         while (!mustStop.get && !finished.get) {
             updateActors()
@@ -110,7 +109,7 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
 
         // Count the angels & arcs :
         // If one side is empty, stop the engine
-        val (angels, orcs) = graph.vertices
+        val (angels, orcs) = graph.vertices.collect()
             .filter(pair => {
                 pair._2.life.alive
             })
@@ -121,7 +120,6 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
                 else (0, 1)
             })
             .reduce((p1, p2) => (p1._1 + p2._1, p1._2 + p2._2))
-
         if (angels == 0 || orcs == 0)
             finished.set(true)
     }
@@ -129,36 +127,32 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
     // Plays a turn
     private def updateActors(): Unit = {
 
-        class Message(val actor: Actor, val target: Actor, val distance: Double, val pv: Double)
-
+        class Message(val actor: Actor, val target: Actor, val distance: Double, val pv: Double) extends Serializable
         // Give to each actor his best target
-        val targets = graph.aggregateMessages[Message](
+        val targets = graph.aggregateMessages[(Actor, Actor, Double, Double)](
 
             // Send messages
             triplet => {
-                if (triplet.srcAttr.life.dead) return
 
-                val srcSide = bModels.value(triplet.srcAttr.t).side
-                val dstSide = bModels.value(triplet.dstAttr.t).side
+                if (triplet.srcAttr.life.alive){
+                    val srcSide = ActorModel.from(triplet.srcAttr.t).side
+                    val dstSide = ActorModel.from(triplet.dstAttr.t).side
 
-                if (srcSide == dstSide) return
+                    if (srcSide != dstSide){
+                        val dstPos = triplet.dstAttr.pos
+                        val srcPos = triplet.srcAttr.pos
+                        val distance = Math.sqrt(Math.pow(dstPos._1-srcPos._1, 2) + Math.pow(dstPos._2-srcPos._2, 2))
 
-                val dstPos = triplet.dstAttr.pos
-                val srcPos = triplet.srcAttr.pos
-                val distance = Math.sqrt(Math.pow(dstPos._1-srcPos._1, 2) + Math.pow(dstPos._2-srcPos._2, 2))
-
-                val msg = new Message(
-                    triplet.dstAttr,
-                    triplet.srcAttr,
-                    distance,
-                    triplet.srcAttr.life.current)
-                triplet.sendToDst(msg)
+                        triplet.sendToDst((triplet.dstAttr, triplet.srcAttr, distance, triplet.srcAttr.life.current))
+                    }
+                }
             },
 
             // Aggregate messages
             (a, b) => {
-                val hostilityA = 10000/(Math.min(Math.max(1, a.distance), 100) * Math.min(a.pv,100))
-                val hostilityB = 10000/(Math.min(Math.max(1, b.distance), 100) * Math.min(b.pv,100))
+
+                val hostilityA = 10000/(Math.min(Math.max(1, a._3), 100) * Math.min(a._4,100))
+                val hostilityB = 10000/(Math.min(Math.max(1, b._3), 100) * Math.min(b._4,100))
 
                 if(hostilityA > hostilityB) a else b
             })
@@ -166,17 +160,16 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
         class MsgData
         case class MoveData(actor:  VertexId, pos: (Float, Float)) extends MsgData
         case class HurtData(target: VertexId, dmg: Float) extends MsgData
-
         // Make each actor attack or move towards his target
-        val messages = targets
+        val messages = targets.collect()
             .map(info => {
-                val model = bModels.value(info._2.actor.t)
+                val model = bModels.value(info._2._1.t)
                 val attack = model.actions(ActionId.Attack).asInstanceOf[actions.Attack]
                 // Take distance and approach actor
-                if (info._2.distance > 2)
+                if (info._2._3 > 2)
                     return //MoveData(info._2.actor.id, (x, y))
                 else
-                    return HurtData(info._1, attack.damages)
+                    return //HurtData(info._1, attack.damages)
             })
 
     }
