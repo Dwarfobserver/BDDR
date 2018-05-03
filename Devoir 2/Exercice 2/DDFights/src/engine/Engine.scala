@@ -127,6 +127,42 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
     // Plays a turn
     private def updateActors(): Unit = {
 
+        // Give to each actor his best target
+        val targets = graph.aggregateMessages[(Actor, Actor, VertexId, Double, Double)](
+
+            // Send messages
+            triplet => {
+                val target = triplet.srcAttr
+                val actor  = triplet.dstAttr
+                if (actor.life.alive && target.life.alive) {
+
+                    val srcSide = ActorModel.from(target.t).side
+                    val dstSide = ActorModel.from(actor.t).side
+
+                    if (srcSide != dstSide) {
+
+                        val dstPos = actor.pos
+                        val srcPos = target.pos
+                        val distance = Math.sqrt(Math.pow(dstPos._1 - srcPos._1, 2) + Math.pow(dstPos._2 - srcPos._2, 2))
+
+                        triplet.sendToDst((
+                            actor,
+                            target,
+                            triplet.srcId,
+                            distance,
+                            target.life.current))
+                    }
+                }
+            },
+
+            // Aggregate messages
+            (a, b) => {
+                val hostilityA = 10000/(Math.min(Math.max(1, a._4), 100) * Math.min(a._5,100))
+                val hostilityB = 10000/(Math.min(Math.max(1, b._4), 100) * Math.min(b._5,100))
+
+                if(hostilityA > hostilityB) a else b
+            })
+
         class Message(val actor: Actor,
                       val target: Actor,
                       val targetId: VertexId,
@@ -134,44 +170,13 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
                       val pv: Double)
             extends Serializable
 
-        // Give to each actor his best target
-        val targets = graph.aggregateMessages[Message](
-
-            // Send messages
-            triplet => {
-                if (triplet.srcAttr.life.dead) return
-
-                val srcSide = ActorModel.from(triplet.srcAttr.t).side
-                val dstSide = ActorModel.from(triplet.dstAttr.t).side
-
-                if (srcSide == dstSide) return
-
-                val dstPos = triplet.dstAttr.pos
-                val srcPos = triplet.srcAttr.pos
-                val distance = Math.sqrt(Math.pow(dstPos._1-srcPos._1, 2) + Math.pow(dstPos._2-srcPos._2, 2))
-
-                triplet.sendToDst(new Message(
-                    triplet.dstAttr,
-                    triplet.srcAttr,
-                    triplet.srcId,
-                    distance,
-                    triplet.srcAttr.life.current))
-            },
-
-            // Aggregate messages
-            (a, b) => {
-                val hostilityA = 10000/(Math.min(Math.max(1, a.distance), 100) * Math.min(a.pv,100))
-                val hostilityB = 10000/(Math.min(Math.max(1, b.distance), 100) * Math.min(b.pv,100))
-
-                if(hostilityA > hostilityB) a else b
-            })
-
         class MsgData extends Serializable
         case class MoveData(id: VertexId, actor: Actor, pos: (Float, Float)) extends MsgData
         case class HurtData(id: VertexId,target: Actor, dmg: Float)          extends MsgData
 
         // Make each actor attack or move towards his target
         val newActors = targets.collect()
+            .map(tuple => (tuple._1, new Message(tuple._2._1, tuple._2._2, tuple._2._3, tuple._2._4, tuple._2._5)))
             .map(info => {
                 val actorId = info._1
                 val msg = info._2
@@ -183,10 +188,10 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
                 if (msg.distance - (actorModel.size + targetModel.size) > 2) {
 
                     val destinationDistance = msg.distance - (actorModel.size + targetModel.size) - 2
-                    var direction: (Float, Float) = (msg.target.pos._1 - msg.actor.pos._1, msg.target.pos._2 - msg.actor.pos._2)
+                    var direction = (msg.actor.pos._1 - msg.target.pos._1, msg.actor.pos._2 - msg.target.pos._2)
                     val directionNorme = Math.sqrt(direction._1 * direction._1 + direction._2 * direction._2).toFloat
                     direction = (direction._1 / directionNorme, direction._2 / directionNorme)
-                    val travelDistance = Math.min(destinationDistance, 10)
+                    val travelDistance = Math.min(destinationDistance, 50)
                     val finalDestination = (msg.target.pos._1 + direction._1 * travelDistance, msg.target.pos._2 + direction._2 * travelDistance)
 
                     val floatPos = (finalDestination._1.toFloat, finalDestination._2.toFloat)
