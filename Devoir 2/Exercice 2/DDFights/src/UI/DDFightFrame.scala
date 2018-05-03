@@ -26,9 +26,9 @@ class DDFightFrame extends MainFrame {
     private var lastPos: Point = _
     private var selectedActor: Actor = _
     private var top: Double = -20
-    private var left: Double = -20
+    private var left: Double = -40
     private var bottom: Double = 20
-    private var right: Double = 20
+    private var right: Double = 40
     private var selectCadre: ((Double,Double),(Double,Double)) = _
 
     //Fonction pour la logique interne du simulateur
@@ -443,9 +443,9 @@ class DDFightFrame extends MainFrame {
                 if (res == Dialog.Result.Ok) {
                     InitialScene = List()
                     top = -20
-                    left = -20
+                    left = -40
                     bottom = 20
-                    right = 20
+                    right = 40
                     selectedActor = null
                     updateView()
                 }
