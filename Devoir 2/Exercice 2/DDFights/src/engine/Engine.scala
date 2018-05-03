@@ -158,20 +158,31 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
             })
 
         class MsgData
-        case class MoveData(actor:  VertexId, pos: (Float, Float)) extends MsgData
+        case class MoveData(actor:  VertexId, pos: (Double, Double)) extends MsgData
         case class HurtData(target: VertexId, dmg: Float) extends MsgData
         // Make each actor attack or move towards his target
         val messages = targets.collect()
             .map(info => {
-                val model = bModels.value(info._2._1.t)
-                val attack = model.actions(ActionId.Attack).asInstanceOf[actions.Attack]
-                // Take distance and approach actor
-                if (info._2._3 > 2)
-                    return //MoveData(info._2.actor.id, (x, y))
-                else
-                    return //HurtData(info._1, attack.damages)
-            })
+                val actorModel = bModels.value(info._2._1.t)
+                val targetModel = bModels.value(info._2._2.t)
+                val attack = actorModel.actions(ActionId.Attack).asInstanceOf[actions.Attack]
 
+
+                // Take distance and approach actor
+                if (info._2._3  - (actorModel.size + targetModel.size)> 2) {
+
+                    val destinationDistance = info._2._3 - (actorModel.size + targetModel.size) - 2
+                    var direction: (Double, Double) = (info._2._1.pos._1 - info._2._2.pos._1, info._2._1.pos._2 - info._2._2.pos._2)
+                    val directionNorme = Math.sqrt(direction._1 * direction._1 + direction._2 * direction._2)
+                    direction = (direction._1 / directionNorme, direction._2 / directionNorme)
+                    val travelDistance = Math.min(destinationDistance, 10)
+                    val finalDestination = (info._2._1.pos._1 + direction._1 * travelDistance, info._2._1.pos._2 + direction._2 * travelDistance)
+
+                    MoveData(info._1, finalDestination)
+                }
+                else
+                    HurtData(info._2._2.id, attack.damages)
+            })
     }
 
     // Get a list of actors from the graph actors (with those dead)
