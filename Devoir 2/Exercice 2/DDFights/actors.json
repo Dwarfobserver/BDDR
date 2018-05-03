@@ -17,7 +17,7 @@
   },
   "Planetar": {
     "side": "Angels",
-    "life": 100,
+    "life": 60,
     "size": 3,
     "energy": 15,
     "initiative": 10,
@@ -33,7 +33,7 @@
   },
   "Movanic Deva": {
     "side": "Angels",
-    "life": 100,
+    "life": 40,
     "size": 2,
     "energy": 15,
     "initiative": 10,
@@ -49,7 +49,7 @@
   },
   "Astral Deva": {
     "side": "Angels",
-    "life": 100,
+    "life": 40,
     "size": 2,
     "energy": 15,
     "initiative": 10,
@@ -65,7 +65,7 @@
   },
   "Orc Barbarian": {
     "side": "Orcs",
-    "life": 10,
+    "life": 20,
     "size": 1,
     "energy": 3,
     "initiative": 1,
@@ -81,7 +81,7 @@
   },
   "Worg Rider": {
     "side": "Orcs",
-    "life": 13,
+    "life": 40,
     "size": 2,
     "energy": 3,
     "initiative": 1,
@@ -97,7 +97,7 @@
   },
   "Warlord": {
     "side": "Orcs",
-    "life": 13,
+    "life": 40,
     "size": 2,
     "energy": 3,
     "initiative": 1,
@@ -113,7 +113,7 @@
   },
   "Green Dragon": {
     "side": "Orcs",
-    "life": 13,
+    "life": 100,
     "size": 5,
     "energy": 3,
     "initiative": 1,
@@ -129,7 +129,7 @@
   },
   "Angel Slayer": {
     "side": "Orcs",
-    "life": 13,
+    "life": 60,
     "size": 3,
     "energy": 3,
     "initiative": 1,

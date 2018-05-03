@@ -9,7 +9,6 @@ import java.util.concurrent.atomic.AtomicBoolean
 import scala.concurrent.duration._
 import scala.concurrent.{Await, ExecutionContext, Future}
 import common.{ActorSide, _}
-import engine.actions.{Attack, Move}
 
 // The class which runs the fight
 class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
