@@ -188,11 +188,11 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
                 if (msg.distance - (actorModel.size + targetModel.size) > 2) {
 
                     val destinationDistance = msg.distance - (actorModel.size + targetModel.size) - 2
-                    var direction = (msg.actor.pos._1 - msg.target.pos._1, msg.actor.pos._2 - msg.target.pos._2)
+                    var direction = (msg.target.pos._1 - msg.actor.pos._1, msg.target.pos._2 - msg.actor.pos._2)
                     val directionNorme = Math.sqrt(direction._1 * direction._1 + direction._2 * direction._2).toFloat
                     direction = (direction._1 / directionNorme, direction._2 / directionNorme)
-                    val travelDistance = Math.min(destinationDistance, 50)
-                    val finalDestination = (msg.target.pos._1 + direction._1 * travelDistance, msg.target.pos._2 + direction._2 * travelDistance)
+                    val travelDistance = Math.min(destinationDistance, 2)
+                    val finalDestination = (msg.actor.pos._1 + direction._1 * travelDistance, msg.actor.pos._2 + direction._2 * travelDistance)
 
                     val floatPos = (finalDestination._1.toFloat, finalDestination._2.toFloat)
                     MoveData(actorId, msg.actor, floatPos)
