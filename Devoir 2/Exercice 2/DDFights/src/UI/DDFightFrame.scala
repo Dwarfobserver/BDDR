@@ -599,7 +599,7 @@ class DDFightFrame extends MainFrame {
             val button = e.peer.getButton
             if(button == 1){
                 selectedActor = getClickedActor(ViewToField(e.point.x, e.point.y))
-                if(selectedActor != null) selectedActor.initialize(ActorModel.from(selectedActor.t))
+                if(selectedActor != null && selectedActor.life == null) selectedActor.initialize(ActorModel.from(selectedActor.t))
                 updateView()
             }
             else if(button == 2){
