@@ -62,6 +62,12 @@ val rddSpells = rddMonsters
 
 The projet lance une interface graphique qui permet de créer, sauvegarder et charger des scènes. Chaque créature est détaillée dans le fichier 'actor.json', qui est parsée par le moteur.
 
+Depuis l'interface graphique vous pouvez charger et sauvegarder des scènes avec les boutons correspondant. Vous pouvez aussi :
+- Selectionner un type de monstre dans la liste puis faire clic droit sur le terrain pour y placer le monstre.
+- Avec un monstre selectionné, maintenir clic droit en glissant sur la scene pour faire apparaitre un groupe de monstre
+- Faire un clic molette pour supprimer un monstre
+- Faire un clic gauche pour selectionner un monstre et afficher ses informations dans l'interface
+
 La synchronisation entre la fenêtre et le moteur est faite grâce à une classe 'Channel[List(Actor)]' : le moteur va, après chaque tour, passer dans le channel le nouvel état des acteurs. L'interface peut tenter de récupérer ces états de façon thread-safe, en obtenant un Option[List(Actor)] du channel (égal à None si il n'y en a pas de noubeaux).
 
 Pour optimiser la sérialisation et le stockage des données, les créatures (nommées 'Actor') voient leur modèle (contenant leurs caractéristiques) stockée dans une map qui est disponible en tant que broadcast variable.
