@@ -127,62 +127,85 @@ class Engine(val channel: Channel[List[Actor]], val setup: List[ActorSetup])
     // Plays a turn
     private def updateActors(): Unit = {
 
-        class Message(val actor: Actor, val target: Actor, val distance: Double, val pv: Double) extends Serializable
+        class Message(val actor: Actor,
+                      val target: Actor,
+                      val targetId: VertexId,
+                      val distance: Double,
+                      val pv: Double)
+            extends Serializable
+
         // Give to each actor his best target
-        val targets = graph.aggregateMessages[(Actor, Actor, Double, Double)](
+        val targets = graph.aggregateMessages[Message](
 
             // Send messages
             triplet => {
+                if (triplet.srcAttr.life.dead) return
 
-                if (triplet.srcAttr.life.alive){
-                    val srcSide = ActorModel.from(triplet.srcAttr.t).side
-                    val dstSide = ActorModel.from(triplet.dstAttr.t).side
+                val srcSide = ActorModel.from(triplet.srcAttr.t).side
+                val dstSide = ActorModel.from(triplet.dstAttr.t).side
 
-                    if (srcSide != dstSide){
-                        val dstPos = triplet.dstAttr.pos
-                        val srcPos = triplet.srcAttr.pos
-                        val distance = Math.sqrt(Math.pow(dstPos._1-srcPos._1, 2) + Math.pow(dstPos._2-srcPos._2, 2))
+                if (srcSide == dstSide) return
 
-                        triplet.sendToDst((triplet.dstAttr, triplet.srcAttr, distance, triplet.srcAttr.life.current))
-                    }
-                }
+                val dstPos = triplet.dstAttr.pos
+                val srcPos = triplet.srcAttr.pos
+                val distance = Math.sqrt(Math.pow(dstPos._1-srcPos._1, 2) + Math.pow(dstPos._2-srcPos._2, 2))
+
+                triplet.sendToDst(new Message(
+                    triplet.dstAttr,
+                    triplet.srcAttr,
+                    triplet.srcId,
+                    distance,
+                    triplet.srcAttr.life.current))
             },
 
             // Aggregate messages
             (a, b) => {
-
-                val hostilityA = 10000/(Math.min(Math.max(1, a._3), 100) * Math.min(a._4,100))
-                val hostilityB = 10000/(Math.min(Math.max(1, b._3), 100) * Math.min(b._4,100))
+                val hostilityA = 10000/(Math.min(Math.max(1, a.distance), 100) * Math.min(a.pv,100))
+                val hostilityB = 10000/(Math.min(Math.max(1, b.distance), 100) * Math.min(b.pv,100))
 
                 if(hostilityA > hostilityB) a else b
             })
 
-        class MsgData
-        case class MoveData(actor:  VertexId, pos: (Double, Double)) extends MsgData
-        case class HurtData(target: VertexId, dmg: Float) extends MsgData
+        class MsgData extends Serializable
+        case class MoveData(id: VertexId, actor: Actor, pos: (Float, Float)) extends MsgData
+        case class HurtData(id: VertexId,target: Actor, dmg: Float)          extends MsgData
+
         // Make each actor attack or move towards his target
-        val messages = targets.collect()
+        val newActors = targets.collect()
             .map(info => {
-                val actorModel = bModels.value(info._2._1.t)
-                val targetModel = bModels.value(info._2._2.t)
+                val actorId = info._1
+                val msg = info._2
+                val actorModel  = bModels.value(msg.actor.t)
+                val targetModel = bModels.value(msg.target.t)
                 val attack = actorModel.actions(ActionId.Attack).asInstanceOf[actions.Attack]
 
-
                 // Take distance and approach actor
-                if (info._2._3  - (actorModel.size + targetModel.size)> 2) {
+                if (msg.distance - (actorModel.size + targetModel.size) > 2) {
 
-                    val destinationDistance = info._2._3 - (actorModel.size + targetModel.size) - 2
-                    var direction: (Double, Double) = (info._2._1.pos._1 - info._2._2.pos._1, info._2._1.pos._2 - info._2._2.pos._2)
-                    val directionNorme = Math.sqrt(direction._1 * direction._1 + direction._2 * direction._2)
+                    val destinationDistance = msg.distance - (actorModel.size + targetModel.size) - 2
+                    var direction: (Float, Float) = (msg.target.pos._1 - msg.actor.pos._1, msg.target.pos._2 - msg.actor.pos._2)
+                    val directionNorme = Math.sqrt(direction._1 * direction._1 + direction._2 * direction._2).toFloat
                     direction = (direction._1 / directionNorme, direction._2 / directionNorme)
                     val travelDistance = Math.min(destinationDistance, 10)
-                    val finalDestination = (info._2._1.pos._1 + direction._1 * travelDistance, info._2._1.pos._2 + direction._2 * travelDistance)
+                    val finalDestination = (msg.target.pos._1 + direction._1 * travelDistance, msg.target.pos._2 + direction._2 * travelDistance)
 
-                    MoveData(info._1, finalDestination)
+                    val floatPos = (finalDestination._1.toFloat, finalDestination._2.toFloat)
+                    MoveData(actorId, msg.actor, floatPos)
                 }
                 else
-                    HurtData(info._2._2.id, attack.damages)
+                    HurtData(msg.targetId, msg.target, attack.damages)
             })
+            .map {
+                case MoveData(id, actor, pos) =>
+                    actor.pos = pos
+                    (id, actor)
+
+                case HurtData(id, target, dmg) =>
+                    target.life.damage(dmg, Elements.Physic)
+                    (id, target)
+            }
+
+            graph = graph.joinVertices(sc.parallelize(newActors))((_, _, actor) => actor)
     }
 
     // Get a list of actors from the graph actors (with those dead)
